@@ -16,11 +16,18 @@ class Includes{
                     "../handles/Constants"
                 ];
             break;
+
+            case Constants::IMPORT_FOR_Auth:
+                $include = [
+                    "../handles/AuthKeys.php"
+                ];
+            break;
         }
-    
+
         for($i = 0; $i<count($include);$i++){
-        	include $include[$i].'.php';
-        }  
+            require_once $include[$i].'.php';
+        }
+        
     }
 }
 

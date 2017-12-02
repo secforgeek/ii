@@ -18,8 +18,8 @@ class Jsonoutput{
         http_response_code($ecode);
     }
 
-    function defaultError(){
-        $this->error("Invalid Request", Constants::HTTP_ERROR_UNAUTHORISED);
+    function defaultError($ecode){
+        $this->error("Invalid Request", $ecode);
     }
 
     //Send Output

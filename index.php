@@ -16,7 +16,7 @@ switch($_SERVER['REQUEST_METHOD']) {
 				break;
 
 				default:
-					$output->defaultError();
+					$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
 				break;
 			}
 		break;
@@ -27,7 +27,7 @@ switch($_SERVER['REQUEST_METHOD']) {
 					
 				break;
 				default:
-					$output->defaultError();
+					$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
 				break;				
 			}
 		break;
