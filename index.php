@@ -1,20 +1,22 @@
 <?php
-include 'db/DB.php';
-include 'handles/statuscode.php';
-$db = new DB(DBVARS::DB_HOSTNAME, DBVARS::DB_DATABASE,DBVARS::DB_USERNAME,DBVARS::DB_PASSWORD);
-$nw = new StatusCode();
+include 'handles/Includes.php';
+Includes::autoload(Constants::IMPORT_FOR_index);
 
+$output = new Jsonoutput();
 switch($_SERVER['REQUEST_METHOD']) {
 
 	case "GET" :
 			switch($_GET['url']){
 				case "auth":
-					return json_encode($db->query("SELECT * FROM users"));
-					$nw->_status_successrequest();
+					$output->success("HelloWorldSuccess", Constants::HTTP_SUCCESS_CODE_OK);
 				break;
 
 				case "users":
+					$output->error("ErrorWOrls", Constants::HTTP_ERROR_UNAUTHORISED);
+				break;
 
+				default:
+					$output->defaultError();
 				break;
 			}
 		break;
@@ -22,21 +24,11 @@ switch($_SERVER['REQUEST_METHOD']) {
 	case "POST" :
 			switch($_GET['url']){
 				case "auth":
-					$postBody = file_get_contents("php://input");
-					$postBody = json_decode($postBody);
-
-					$username = $postBody->username;
-					$password = $postBody->password;
-
-					if($db->query('SELECT username FROM users WHERE username=:username',array(':username'=>$username))){
-						$cstrong = True;
-						$token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
-						echo '{"Gate":"'.$token.'"}';
-					}else{
-						http_response_code(401);
-					}
 					
 				break;
+				default:
+					$output->defaultError();
+				break;				
 			}
 		break;
 
