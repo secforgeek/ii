@@ -21,6 +21,9 @@ class Constants{
     const AUTH_TOKEN_HEADER_AUD         = "gsdroid.com";
     const AUTH_TOKEN_ACCESS_USER        = "user";
     const AUTH_TOKEN_ACCESS_CLIENT      = "client";
+
+    //Errors
+    const ERROR_INVALID_USR_PASSWD      = "Incorrect username or password";
 }
 
 ?>

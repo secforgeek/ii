@@ -1,6 +1,6 @@
 <?php
-include 'handles/Includes.php';
-Includes::autoload(Constants::IMPORT_FOR_index);
+include "router/jsonoutput.php";
+include "handles/Constants.php";
 
 $output = new Jsonoutput();
 switch($_SERVER['REQUEST_METHOD']) {
@@ -24,7 +24,7 @@ switch($_SERVER['REQUEST_METHOD']) {
 	case "POST" :
 			switch($_GET['url']){
 				case "auth":
-					
+					include "request/POST/post_auth.php";
 				break;
 				default:
 					$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);

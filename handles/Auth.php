@@ -1,8 +1,8 @@
 <?php
 use \Firebase\JWT\JWT;
+include "AuthKeys.php";
 require __DIR__ . '../vendor/autoload.php';
-include 'handles/Includes.php';
-Includes::autoload(Constants::IMPORT_FOR_Auth);
+
 
 class Auth{
     
