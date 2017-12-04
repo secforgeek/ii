@@ -1,11 +1,19 @@
 <?php
 
 class Constants{
-    //File Names
-    const IMPORT_FOR_index              = "index";
-    const IMPORT_FOR_jsonoutput         = "jsonoutput";
-    const IMPORT_FOR_Auth               = "Auth";
+    //DB Variables
+    const DB_HOSTNAME                   = '127.0.0.1';
+    const DB_DATABASE                   = 'restro';
+    const DB_USERNAME                   = 'root';
+    const DB_PASSWORD                   = '';
 
+    //DB Type
+    const DB_FETCH_ASSOC                = 'FETCH_ASSOC';
+    const DB_FETCH_NUM                  = 'FETCH_NUM';
+    const DB_EMPTY_VALUE                = 'EMPTY';
+
+    //Header 
+    const HEADER_INCOME_METHOD_ALLOWED  = "application/json";
 
     //HTTP
     const HTTP_SUCCESS_CODE_OK          = 200;
@@ -21,9 +29,14 @@ class Constants{
     const AUTH_TOKEN_HEADER_AUD         = "gsdroid.com";
     const AUTH_TOKEN_ACCESS_USER        = "user";
     const AUTH_TOKEN_ACCESS_CLIENT      = "client";
+    const AUTH_TOKEN_ACCESS_ADMIN       = "admin";
+    const AUTH_LENGTH_SHA256            = 64;
 
     //Errors
     const ERROR_INVALID_USR_PASSWD      = "Incorrect username or password";
+    const ERROR_INVALID_USR_FORMAT      = "Please enter valid email address and password";
+    const ERROR_INVALID_REQ_FORMAT      = "Invalid request format";
+    const ERROR_TECHNICAL_ISSUE         = "Technical Error, Try again later. If problem exists, email your issue";
 }
 
 ?>
