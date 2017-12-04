@@ -36,7 +36,23 @@ class Constants{
     const ERROR_INVALID_USR_PASSWD      = "Incorrect username or password";
     const ERROR_INVALID_USR_FORMAT      = "Please enter valid email address and password";
     const ERROR_INVALID_REQ_FORMAT      = "Invalid request format";
-    const ERROR_TECHNICAL_ISSUE         = "Technical Error, Try again later. If problem exists, email your issue";
+    const ERROR_TECHNICAL_ISSUE         = "Technical Error, Try again later.";
+    const ERROR_DEF_INVALID_REQUEST     = "Invalid Request";
+
+    //Success
+    const SUCCESS_LOGGED_IN             = "Successfully Logged In";
+
+    //JSON Reply Head
+    const JSON_MAIN_RESPONSE_TEXT       = "response";
+    const JSON_HEADING_SUCCESS          = "success";
+    const JSON_HEADING_DATA             = "data";
+    const JSON_HEADING_ERROR            = "error";
+    const JSON_LOGIN_TOKEN_TAG          = "token";
+    const JSON_WELCOME_NAME             = "welcome_name";
+
+
+    //API allowed input
+    const API_ALLOWED_INPUT             = 2;
 }
 
 ?>

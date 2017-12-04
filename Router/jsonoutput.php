@@ -4,28 +4,36 @@ class Jsonoutput{
 
     function error($sending_data, $ecode){
         $data = array(
-            'error' => $sending_data
+            Constants::JSON_HEADING_ERROR => $sending_data
         );
         $this->send($data);
         http_response_code($ecode);
     }
 
-    function success($sending_data, $ecode){
-        $data = array(
-            'success' => $sending_data
-        );
+    function success($sending_data, $recdata, $ecode){
+        if($recdata != NULL){
+            $data = array(
+                Constants::JSON_HEADING_SUCCESS => $sending_data,
+                Constants::JSON_HEADING_DATA =>$recdata
+            );
+        }else{
+            $data = array(
+                Constants::JSON_HEADING_SUCCESS => $sending_data
+            );
+        }
+
         $this->send($data);
         http_response_code($ecode);
     }
 
     function defaultError($ecode){
-        $this->error("Invalid Request", $ecode);
+        $this->error(Constants::ERROR_DEF_INVALID_REQUEST, $ecode);
     }
 
     //Send Output
     function send($data){
         $reply = array(
-            'response' => $data
+            Constants::JSON_MAIN_RESPONSE_TEXT => $data
         );
         header('Content-Type: application/json');        
         echo json_encode($reply);

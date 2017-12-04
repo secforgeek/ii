@@ -4,7 +4,7 @@ class DB{
     private $pdo;
     public function __construct($host = Constants::DB_HOSTNAME, $dbname = Constants::DB_DATABASE, $username = Constants::DB_USERNAME, $password = Constants::DB_PASSWORD){
         $pdo = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8',$username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //EXCEPTION
         $this->pdo = $pdo;
     }
 
@@ -28,9 +28,10 @@ class DB{
         }
     }
 
-    public function insertQuery($query, $params = array()){
+    public function InsertUpdateQuery($query, $params = array(), $resultCount){
         $statement = $this->pdo->prepare($query);
-        if($statement->execute($params)){
+        $statement->execute($params);
+        if($statement->rowCount() == $resultCount){
             return true;
         }else{
             return false;
