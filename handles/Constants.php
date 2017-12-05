@@ -27,9 +27,9 @@ class Constants{
     const AUTH_TOKEN_ENCRYPT_METHOD     = "RS256";
     const AUTH_TOKEN_HEADER_ISS         = "gsdroid.com";
     const AUTH_TOKEN_HEADER_AUD         = "gsdroid.com";
-    const AUTH_TOKEN_ACCESS_USER        = "user";
-    const AUTH_TOKEN_ACCESS_CLIENT      = "client";
-    const AUTH_TOKEN_ACCESS_ADMIN       = "admin";
+    const AUTH_TOKEN_ACCESS_USER        = "U";
+    const AUTH_TOKEN_ACCESS_CLIENT      = "C";
+    const AUTH_TOKEN_ACCESS_ADMIN       = "A";
     const AUTH_LENGTH_SHA256            = 64;
 
     //Errors
@@ -38,6 +38,7 @@ class Constants{
     const ERROR_INVALID_REQ_FORMAT      = "Invalid request format";
     const ERROR_TECHNICAL_ISSUE         = "Technical Error, Try again later.";
     const ERROR_DEF_INVALID_REQUEST     = "Invalid Request";
+    const ERROR_DB_PDO_ERROR            = "Technical Error, Please try again later";
 
     //Success
     const SUCCESS_LOGGED_IN             = "Successfully Logged In";
@@ -52,7 +53,7 @@ class Constants{
 
 
     //API allowed input
-    const API_ALLOWED_INPUT             = 2;
+    const API_AUTH_ALLOWED_INPUT        = 2;
 }
 
 ?>
