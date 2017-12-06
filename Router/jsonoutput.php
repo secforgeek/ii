@@ -26,6 +26,14 @@ class Jsonoutput{
         http_response_code($ecode);
     }
 
+    function action($sending_data){
+        $data = array(
+            Constants::JSON_MAIN_RESPONSE_ACTION => $sending_data
+        );
+        $this->send($data);
+        http_response_code(Constants::HTTP_SUCCESS_CODE_OK);
+    }   
+
     function defaultError($ecode){
         $this->error(Constants::ERROR_DEF_INVALID_REQUEST, $ecode);
     }

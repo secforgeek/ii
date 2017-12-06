@@ -38,12 +38,16 @@ switch($_SERVER['REQUEST_METHOD']) {
 					if(isset($header['content-type'])){
 						if($header['content-type'] == 'application/json'){
 							switch($_GET['url']){
-								case "auth":
-									include "request/POST/post_auth.php";
+								case 'auth':
+									include 'request/POST/post_auth.php';
 								break;
 
-								case "create":
-									include "request/POST/post_create.php";
+								case 'create':
+									include 'request/POST/post_create.php';
+								break;
+
+								case 'profile':
+									include 'request/POST/post_profile.php';
 								break;
 
 								default:

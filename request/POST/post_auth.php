@@ -27,17 +27,20 @@
                                 switch($val['type']){
                                     case Constants::AUTH_TOKEN_ACCESS_USER:
                                         $ty = Constants::AUTH_TOKEN_ACCESS_USER; 
-                                        $tk = $auth->generateToken($prk, $val['email'],$ty);
+                                        $data = $auth->generateData($val['name'], $ty,  $val['email']);
+                                        $tk = $auth->generateToken($prk, $data, Constants::JWT_EXPIRE_IN_14_DAYS);
                                     break;
 
                                     case Constants::AUTH_TOKEN_ACCESS_CLIENT:
                                         $ty = Constants::AUTH_TOKEN_ACCESS_CLIENT;
-                                        $tk = $auth->generateToken($prk, $val['email'],$ty);
+                                        $data = $auth->generateData($val['name'], $ty,  $rec_username);
+                                        $tk = $auth->generateToken($prk, $data, Constants::JWT_EXPIRE_IN_14_DAYS);
                                     break;
 
                                     case Constants::AUTH_TOKEN_ACCESS_ADMIN:
                                         $ty = Constants::AUTH_TOKEN_ACCESS_ADMIN;
-                                        $tk = $auth->generateToken($prk, $val['email'],$ty);  
+                                        $data = $auth->generateData($val['name'], $ty,  $rec_username);
+                                        $tk = $auth->generateToken($prk, $data, Constants::JWT_EXPIRE_IN_14_DAYS);
                                     break;
 
                                     default:
@@ -49,8 +52,9 @@
                                 array(':token' => $tk, ':user' => $rec_username), 1)){
                                     $output->success(Constants::SUCCESS_LOGGED_IN, 
                                     array(
-                                        Constants::JSON_WELCOME_NAME => $val['name'],
-                                        Constants::JSON_LOGIN_TOKEN_TAG => $tk
+                                        Constants::JSON_PROFILE_STATUS => $val['profile_status'],
+                                        Constants::JSON_LOGIN_TOKEN_TAG => $tk,
+                                        Constants::JSON_PUBLIC_KEY => $puk
                                     ), Constants::HTTP_SUCCESS_CODE_OK);
                                     exit();
                                 }else{
