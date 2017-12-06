@@ -7,19 +7,25 @@ $header = getallheaders();
 switch($_SERVER['REQUEST_METHOD']) {
 		case "GET" :
 				try{
-					if($header['content-type'] == 'application/json'){
-						switch($_GET['url']){
-							case "auth":
-								//GET METHOD
-							break;
-			
-							default:
-								$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
-							break;
+					if(isset($header['content-type'])){
+						if($header['content-type'] == 'application/json'){
+							switch($_GET['url']){
+								case "auth":
+									echo "HEllo";
+								break;
+				
+								default:
+									$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
+									exit();
+								break;
+							}
+						}else{
+							$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
+							exit();
 						}
 					}else{
-						$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
-						exit();
+						$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
+						exit();						
 					}
 				}catch(Exception $e){
 					$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
@@ -29,23 +35,29 @@ switch($_SERVER['REQUEST_METHOD']) {
 	
 		case "POST" :
 				try{
-					if($header['content-type'] == 'application/json'){
-						switch($_GET['url']){
-							case "auth": //COMPLETED
-								include "request/POST/post_auth.php";
-							break;
+					if(isset($header['content-type'])){
+						if($header['content-type'] == 'application/json'){
+							switch($_GET['url']){
+								case "auth":
+									include "request/POST/post_auth.php";
+								break;
 
-							case "create":
-								include "request/POST/post_create.php";
-							break;
+								case "create":
+									include "request/POST/post_create.php";
+								break;
 
-							default:
-								$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
-							break;				
+								default:
+									$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
+									exit();
+								break;				
+							}
+						}else{
+							$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
+							exit();
 						}
 					}else{
-						$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
-						exit();
+						$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
+						exit();						
 					}
 				}catch(Exception $e){
 					$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
@@ -54,7 +66,8 @@ switch($_SERVER['REQUEST_METHOD']) {
 			break;
 	
 		default :		
-			$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
+			header('Allow: GET, POST');
+			$output->defaultError(Constants::HTTP_ERROR_METHODNOTALLOWED);
 			exit();
 		break;
 }

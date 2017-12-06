@@ -12,7 +12,6 @@ class DB{
         try{
             $statement = $this->pdo->prepare($query);
             $statement->execute($params);
-            $c = $statement->rowCount();
             switch($returntype){
                 case Constants::DB_FETCH_ASSOC:   
                     $data = $statement->fetch(PDO::FETCH_ASSOC);
@@ -22,30 +21,40 @@ class DB{
                     $data = $statement->fetch(PDO::FETCH_NUM);
                 break;
             }
-            if($data == NULL){
-                return Constants::DB_EMPTY_VALUE;
+            $row = $statement->rowCount();
+            if($row == 0){
+                return array(Constants::DB_ROW_COUNT_KEY => $row);
+                $this->reset();
             }else{
-                return $data;
+                return array_merge(array(Constants::DB_ROW_COUNT_KEY => $row), $data);
+                $this->reset();
             }
         }catch(PDOException $e){
             return Constants::DB_EMPTY_VALUE;
+            $this->reset();
         }
     }
 
     public function InsertUpdateQuery($query, $params = array(), $resultCount){
-       // try{
+       try{
             $statement = $this->pdo->prepare($query);
             $statement->execute($params);
             if($statement->rowCount() == $resultCount){
                 return true;
+                $this->reset();
             }else{
                 return false;
+                $this->reset();
             } 
-     //   }catch(PDOException $e){
-       //     return false;
-       // }     
+        }catch(PDOException $e){
+            return false;
+            $this->reset();
+        }     
     }
 
+    public function reset(){
+        $this->pdo = null;
+    }
 }
 
 

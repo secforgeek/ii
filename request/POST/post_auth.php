@@ -14,11 +14,11 @@
                 }else{
                     include 'db/DB.php';
                     $db = new DB();
-                    $val = $db->selectQuery('SELECT name, email, password, type FROM users_login WHERE email=:email',array(':email'=>$rec_username), Constants::DB_FETCH_ASSOC);
-                    if($val == Constants::DB_EMPTY_VALUE){
+                    $val = $db->selectQuery(Constants::QUERY_AUTH_CHECK_USER_EXIST,array(':email'=>$rec_username), Constants::DB_FETCH_ASSOC);
+                    if($val[Constants::DB_ROW_COUNT_KEY] === 0){
                         $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_UNAUTHORISED);
                     }else{
-                        if(strlen($rec_password) == Constants::AUTH_LENGTH_SHA256){
+                        if(strlen($rec_password) === Constants::AUTH_LENGTH_SHA256){
                             $md5 = hash('md5',$rec_password);
                             if(password_verify($md5, $val['password'])){
                                 require_once 'handles/Auth.php';
@@ -45,7 +45,7 @@
                                         exit();
                                     break;
                                 }
-                                if($db->InsertUpdateQuery('UPDATE users_login SET token=:token, updated_at=NOW() WHERE email=:user',
+                                if($db->InsertUpdateQuery(Constants::QUERY_AUTH_USER_TOKEN_UPDATE,
                                 array(':token' => $tk, ':user' => $rec_username), 1)){
                                     $output->success(Constants::SUCCESS_LOGGED_IN, 
                                     array(
