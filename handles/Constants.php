@@ -59,7 +59,12 @@ class Constants{
     const ERROR_INVALID_PASSWORD        = 'Please enter valid password';
     const ERROR_INVALID_FIRSTNAME       = 'Please enter valid firstname';
     const ERROR_INVALID_EMAIL           = 'Please enter valid email';
+    const ERROR_INVALID_NAME            = 'Please enter valid name';
+    const ERROR_INVALID_ADDRESS         = 'Please enter valid address';
     const ERROR_AUTH_FAILED             = 'Authentication Failed';
+    const ERROR_INVALID_CITY            = 'Please enter valid city';
+    const ERROR_INVALID_COUNTRY         = 'You are not allowed to access from this country';
+    const ERROR_INVALID_POSTCODE        = 'Please enter a valid postcode';
 
     //Success
     const SUCCESS_LOGGED_IN             = 'Successfully Logged In';
@@ -76,26 +81,29 @@ class Constants{
 
     //JSON Action
     const JSON_ACTION_LOGOUT            = 'logout';
+    const JSON_ACTION_JOB_DONE          = 'success';
 
     //API allowed input
     const API_AUTH_ALLOWED_INPUT        = 2;
     const API_CREATE_USER_ALLOWED_INPUT = 4;
     const API_UPDATE_PROFILE_INPUT      = 10;
 
-    //others
+    //Rules
     const OTHER_MOBILE_ALLOWED_CHAR     = 10;
-
-    //GateKeeper
-    const KEEPER_CREATE_USER_RULE       = 'CREATE';
+    const OTHER_PREG_ONLY_ALBHA         = "/^[a-zA-Z]+$/";
+    const OTHER_PREG_ALPHA_SPACE        = "/^[a-zA-Z ]+$/";
+    const OTHER_PREG_ALPHA_NUM          = "/^[a-zA-Z0-9]+$/";
+    const OTHER_PREG_ALPHA_NUM_SPACE    = "/^[a-zA-Z0-9 ]+$/";
 
     //DB Query
     const QUERY_AUTH_CHECK_USER_EXIST   = 'SELECT name, email, password, type, profile_status FROM users_login WHERE email=:email';
+    const QUERY_IF_EMAIL_AND_MOB_EXISTS = 'SELECT email FROM users_login WHERE email = :email OR mobile = :mobile';
+    const QUERY_SELECT_EMAIL_USRSPROFILE= 'SELECT * FROM users_login WHERE email = :email';
     const QUERY_AUTH_USER_TOKEN_UPDATE  = 'UPDATE users_login SET token=:token, updated_at=NOW() WHERE email=:user';
     const QUERY_CREATE_USER             = "INSERT INTO users_login (joined, type, email, password, mobile) VALUES (NOW(), 'U', :email, :password, :mobile)";
-    const QUERY_IF_EMAIL_AND_MOB_EXISTS = 'SELECT email FROM users_login WHERE email = :email OR mobile = :mobile';
     const QUERY_INSERT_USER_LOGINS      = "INSERT INTO users_login (profile_status, joined, type, name, email, password, last_changed, token, mobile) VALUES ('N', NOW(), 'U', :name, :email, :password, NOW(), :token, :mobile)";
-    const QUERY_UPDATE_USER_PROFILE     = "INSERT INTO user_profile (email, firstname, lastname, mobile, address_one, address_two, city, country, postcode) VALUES (
-        :email, :firstname, :lastname, :mobile, :address_one, :address_two, :city, :country, :postcode)";
+    const QUERY_UPDATE_USER_PROFILE     = 'INSERT INTO user_profile (email, firstname, lastname, mobile, address_one, address_two, city, country, postcode, updated_at) VALUES (
+        :email, :firstname, :lastname, :mobile, :address_one, :address_two, :city, :country, :postcode, NOW())';
 
 
 }
