@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2017 at 12:53 AM
+-- Generation Time: Dec 08, 2017 at 01:40 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -52,19 +52,53 @@ CREATE TABLE `client_profile` (
 CREATE TABLE `client_shop_details` (
   `id` int(11) NOT NULL,
   `client_id` varchar(32) NOT NULL,
-  `active` char(1) NOT NULL,
-  `store_status` char(1) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `profile_img` text NOT NULL,
   `address_one` varchar(30) NOT NULL,
   `address_two` varchar(30) NOT NULL,
   `city` varchar(30) NOT NULL,
   `country` varchar(30) NOT NULL,
-  `pin` varchar(6) NOT NULL,
-  `info` text NOT NULL,
-  `delivery_price` int(3) NOT NULL,
-  `minimum_order` int(3) NOT NULL,
-  `distance_km` int(2) NOT NULL
+  `postcode` varchar(6) NOT NULL,
+  `phone` int(10) NOT NULL,
+  `info` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client_shop_details_items`
+--
+
+CREATE TABLE `client_shop_details_items` (
+  `id` int(11) NOT NULL,
+  `client_id` varchar(32) NOT NULL,
+  `category_id` varchar(32) NOT NULL,
+  `category` varchar(32) NOT NULL,
+  `item_topic` varchar(32) NOT NULL,
+  `item_desc` varchar(200) NOT NULL,
+  `price` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `search_clients`
+--
+
+CREATE TABLE `search_clients` (
+  `id` int(11) NOT NULL,
+  `client_id` varchar(32) NOT NULL,
+  `active` char(1) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `profile_img` varchar(150) NOT NULL,
+  `cuisine` text NOT NULL,
+  `delivery_fee` int(3) NOT NULL,
+  `min_order` int(3) NOT NULL,
+  `lat` double NOT NULL,
+  `lng` double NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `sub_category` varchar(50) NOT NULL,
+  `table_dir` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -94,7 +128,7 @@ CREATE TABLE `users_login` (
 --
 
 INSERT INTO `users_login` (`id`, `profile_status`, `joined`, `type`, `name`, `email`, `password`, `last_changed`, `token`, `mobile`, `verified_mob`, `verified_email`, `updated_at`) VALUES
-(1, 'N', '2017-12-05 20:46:22', 'U', 'Test1', 'username@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTI1OTUxODcsImV4cCI6MzAyNjM5OTk3NCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QxIiwidHlwZSI6IlUiLCJlbWFpbCI6InVzZXJuYW1lQGdtYWlsLmNvbSJ9fQ.qoIex2T6wbDMotUAaS47gB6fwxvn56FXBPRIEunuEkLTP4rhNq5jyiSx17lAYxvstAspm3zqLFM09KoaIIi2qgz1TTfbX-pmsG3RfFfC', 1234567890, '', '', '2017-12-06 21:19:47'),
+(1, 'N', '2017-12-05 20:46:22', 'U', 'Test', 'username@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTI1OTUxODcsImV4cCI6MzAyNjM5OTk3NCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QxIiwidHlwZSI6IlUiLCJlbWFpbCI6InVzZXJuYW1lQGdtYWlsLmNvbSJ9fQ.qoIex2T6wbDMotUAaS47gB6fwxvn56FXBPRIEunuEkLTP4rhNq5jyiSx17lAYxvstAspm3zqLFM09KoaIIi2qgz1TTfbX-pmsG3RfFfC', 1234567890, '', '', '2017-12-07 15:21:30'),
 (2, 'N', '2017-12-05 21:50:43', 'U', 'Test2', 'usernameh@gmail.com', '$2y$10$OflNGOLMHxOFn5V5gUSsgeGAIAvhUwE1m1eVqNlsHVaIILWhxfBEi', '2017-12-05 21:50:43', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbWVoQGdtYWlsLmNvbSIsInR5cGUiOiJVIn0.WXhF41PvgUUAo2k_217gRsLrw2AzQJLzPg-HX7FmO_G756-TJhmr5MBgHOMS-71MaLNmXoK-6mv1_SF3H1M8eCOPVACLih20bnfeJohQJhU1kJeOmBcErxZkVaulkA2Yvfj2DtIgXIxCfXnHS6xFzkgvcnA', 1234567895, '', '', '2017-12-06 21:12:21'),
 (3, 'N', '2017-12-05 23:42:22', 'U', 'asdsadghf', 'usernam@gmail.com', '$2y$10$bPJGMIxgzhhtxFDxtOsY9.K72GoAfB1LaxPoZbUdYH6ZM2gU.cURG', '2017-12-05 23:42:22', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbUBnbWFpbC5jb20iLCJ0eXBlIjoiVSJ9.aOjaQo5fzhBFGexqmNzudyIePa1Nd7nqSADNc0JxnISfQfUzkGkjgjeVSP-tIOEkli1EtPasDncimtaSseGDxW4vYfcEcDKYsNzmgbNiVBfcynvV0lifWXccYDErt9T2XQMMU_sNi1CPprh5hzWhtp6qBzRCg3', 1234567894, '', '', '2017-12-05 23:42:22'),
 (4, 'N', '2017-12-05 23:44:07', 'U', 'Akshay', 'akshay@gmail.com', '$2y$10$dO3IN05IIink0miMmIAf2u5pintq.OPcad/WtOucYmTRl5ITPhwY2', '2017-12-05 23:44:07', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoiYWtzaGF5QGdtYWlsLmNvbSIsInR5cGUiOiJVIn0.t99FBl5sfGOm3HvAhpm2vNXgiBxYJ9Ts58GTf8pRoaqy9nZjAa9nYxUTs0B1L2Fl6ykHvGEGkdbOtfrsEuZaTGkTe3MvQzu4gGbW1VWSKhTybtXXPnuGK6fjSVQuKsDfw7WayNifEiccdhr-zmCtd_0lRyhLmjF', 1234567891, '', '', '2017-12-05 23:44:07');
@@ -120,6 +154,13 @@ CREATE TABLE `user_profile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `user_profile`
+--
+
+INSERT INTO `user_profile` (`id`, `email`, `firstname`, `lastname`, `mobile`, `address_one`, `address_two`, `city`, `country`, `postcode`, `updated_at`) VALUES
+(1, 'username@gmail.com', 'Test', 'Ravichandran', 1234567890, 'ddddddddddddddd', 'ddddddddddf', 'Delhi', 'India', 123456, '2017-12-07 18:20:04');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -137,7 +178,23 @@ ALTER TABLE `client_profile`
 --
 ALTER TABLE `client_shop_details`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `client_id` (`client_id`);
+  ADD UNIQUE KEY `client_id` (`client_id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Indexes for table `client_shop_details_items`
+--
+ALTER TABLE `client_shop_details_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `client_id` (`client_id`);
+
+--
+-- Indexes for table `search_clients`
+--
+ALTER TABLE `search_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `client_id` (`client_id`),
+  ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `users_login`
@@ -172,6 +229,18 @@ ALTER TABLE `client_shop_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `client_shop_details_items`
+--
+ALTER TABLE `client_shop_details_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `search_clients`
+--
+ALTER TABLE `search_clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users_login`
 --
 ALTER TABLE `users_login`
@@ -181,7 +250,7 @@ ALTER TABLE `users_login`
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -199,6 +268,19 @@ ALTER TABLE `client_profile`
 --
 ALTER TABLE `client_shop_details`
   ADD CONSTRAINT `client_shop_details_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client_profile` (`client_id`);
+
+--
+-- Constraints for table `client_shop_details_items`
+--
+ALTER TABLE `client_shop_details_items`
+  ADD CONSTRAINT `client_shop_details_items_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `search_clients` (`client_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `search_clients`
+--
+ALTER TABLE `search_clients`
+  ADD CONSTRAINT `search_clients_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client_shop_details` (`client_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `search_clients_ibfk_3` FOREIGN KEY (`name`) REFERENCES `client_shop_details` (`name`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_profile`

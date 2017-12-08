@@ -24,9 +24,9 @@ if (count((array)$postBody) == Constants::API_UPDATE_PROFILE_INPUT) {
 									if (preg_match(Constants::OTHER_PREG_ALPHA_NUM_SPACE, $postBody -> address_two) && (strlen($postBody -> address_two) >= 5 && strlen($postBody -> address_two) <= 15)) {
 										if (preg_match(Constants::OTHER_PREG_ONLY_ALBHA, $postBody->city) && (strlen($postBody->city) >= 5 && strlen($postBody->city) <= 15)) {
 											include 'handles/GlobalVariables.php';
-											if (in_array(ucfirst($postBody -> country), $allowed_countries)) {
-												if (in_array(strlen($postBody -> postcode), $allowed_postcode_length) && is_numeric($postBody -> postcode)) {
-													if ($query['email'] === $postBody -> email) {
+											if (in_array(ucfirst($postBody->country), $allowed_countries)) {
+												if (in_array(strlen($postBody->postcode), $allowed_postcode_length) && is_numeric($postBody->postcode)) {
+													if ($query['email'] === $postBody->email) {
 														$params = array(
 															":email" => $postBody->email, 
 															":firstname" => $postBody->firstname, 
