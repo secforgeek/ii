@@ -1,34 +1,22 @@
 <?php
-include 'handles/AuthKeys.php';
-include 'handles/Auth.php';
-include 'handles/Constants.php';
-
-$auth = new Auth();
-$data = array(
-    "usr" => "Gajendra",
-    "type" => "client",
-    "email" => "r.gajendran3@gmail.com"
-);
-
-$etoken = <<<EOD
-eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTI0NzQ4MjIsIm5iZiI6M
-TUxMzE3OTYyMiwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IkdhamVuZHJ
-hIiwidHlwZSI6ImNsaWVudCIsImVtYWlsIjoici5nYWplbmRyYW4zQGdtYWlsLmNvbSJ9f
-Q.IKVb_KBehxjxWEECHlMreebprocxq4HKnS-vzJMV4ImmD-3xgUOHNWp1fX4BJCvw2ort
-AGppgWDFD1L4NaKacFmSG05A3PgY4vn6N5x1HLLlUvl81P66FF1w75pq-Q89tGRv8eYp7b
-ftg9iMEsCTkeBOOHmQX_-e7qb2CDKEPh0
-EOD;
-$token = $auth->generateToken($prk, $data, "+30 day");
-
-echo $token."<br><br>";
-
-try{
-    echo "Decode <br><br>";
-    echo print_r($auth->decodeToken($token, $puk), true);
-}catch(Exception $e){
-    echo $e->getMessage();
+function getDistanceBetweenPointsNew($latitude1, $longitude1, $latitude2, $longitude2) {    
+$theta = $longitude1 - $longitude2;
+$miles = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos (deg2rad($latitude2)) * cos(deg2rad($theta)));
+$miles = acos($miles);
+$miles = rad2deg($miles);
+$miles = $miles * 60 * 1.1515;
+$kilometers = $miles * 1.609344;
+return compact('miles','kilometers'); 
 }
 
-echo strtotime("+30 day", time());
+$latitude = 53.800755;
+$longitude = -1.549077;
+$latitude2= 53.795984;
+$longitude2 = -1.759398;
+
+$point1 = array('lat' => number_format ($latitude,4,'.',''), 'long' => number_format ($longitude,4,'.',''));
+$point2 = array('lat' => number_format ($latitude2,4,'.',''), 'long' => number_format ($longitude2,4,'.',''));
+$distance = getDistanceBetweenPointsNew($point1['lat'], $point1['long'], $point2['lat'], $point2['long']);
+print_r($distance);
 
 ?>
