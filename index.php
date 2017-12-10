@@ -10,8 +10,8 @@ switch($_SERVER['REQUEST_METHOD']) {
 					if(isset($header['content-type'])){
 						if($header['content-type'] == 'application/json'){
 							switch($_GET['url']){
-								case "auth":
-									echo "HEllo";
+								case "findshops":
+									include 'request/GET/findshops.php';
 								break;
 				
 								default:
