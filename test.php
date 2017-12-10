@@ -18,5 +18,16 @@ $point1 = array('lat' => number_format ($latitude,4,'.',''), 'long' => number_fo
 $point2 = array('lat' => number_format ($latitude2,4,'.',''), 'long' => number_format ($longitude2,4,'.',''));
 $distance = getDistanceBetweenPointsNew($point1['lat'], $point1['long'], $point2['lat'], $point2['long']);
 print_r($distance);
+ $json = json_decode($json);
+ $add_array  = $json->results;
+ $add_array = $add_array[0];
+ $add_array = $add_array->address_components;
+ foreach ($add_array as $key) {
+    if($key->types[0] == 'administrative_area_level_2')
+    {
+      $city = $key->long_name;
+      echo $city;
+    }
 
+}
 ?>
