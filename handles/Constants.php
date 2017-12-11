@@ -94,7 +94,7 @@ class Constants{
     const API_AUTH_ALLOWED_INPUT        = 2;
     const API_CREATE_USER_ALLOWED_INPUT = 4;
     const API_UPDATE_PROFILE_INPUT      = 10;
-    const API_FINDSHOP_ALLOWED_INPUT    = 3;
+    const API_FINDSHOP_ALLOWED_INPUT    = 4;
 
     //Rules
     const OTHER_MOBILE_ALLOWED_CHAR     = 10;
@@ -113,7 +113,7 @@ class Constants{
     const QUERY_UPDATE_USER_PROFILE     = 'INSERT INTO user_profile (email, firstname, lastname, mobile, address_one, address_two, city, country, postcode, updated_at) VALUES (
         :email, :firstname, :lastname, :mobile, :address_one, :address_two, :city, :country, :postcode, NOW())';
     const QUERY_SELECT_TOKEN_FROM_EMAIL = 'SELECT token FROM users_login WHERE email = :email';
-    const QUERY_SELECT_ALLCLI_LATLNG    = "SELECT client_id, lat, lng, delivery_dis FROM client_shop_search WHERE active = 'Y'";
+    const QUERY_SELECT_ALLCLI_LATLNG    = "SELECT client_id, name, profile_img, cuisine, delivery_fee, delivery_dis, min_order, lat, lng FROM client_shop_search WHERE active = 'Y' AND sub_category = :scategory ORDER BY delivery_dis ASC";
 
 }
 
