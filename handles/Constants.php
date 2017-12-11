@@ -10,11 +10,14 @@ class Constants{
     //DB Type
     const DB_FETCH_ASSOC                = 'FETCH_ASSOC';
     const DB_FETCH_NUM                  = 'FETCH_NUM';
+    const DB_FETCH_ASSOC_ALL            = 'FETCH_ASSOC_ALL';
+    const DB_FETCH_NUM_ALL              = 'FETCH_NUM_ALL';
     const DB_ROW_COUNT_KEY              = 'crow';
+    const DB_EMPTY_VALUE                = 'NULL_ERROR';
 
     //Header 
     const HEADER_INCOME_METHOD_ALLOWED  = 'application/json';
-
+    const HEADER_CONTENT_TYPE_KEY       = 'content-type';
     //HTTP
     const HTTP_SUCCESS_CODE_OK          = 200;
     const HTTP_SUCCESS_CODE_ACCEPTED    = 202;
@@ -44,6 +47,10 @@ class Constants{
     const JWT_EXPIRE_IN_14_DAYS         = '+14 day';
     const JWT_EXPIRE_IN_30_DAYS         = '+30 day';
     const JWT_EXPIRE_IN_60_DAYS         = '+60 day';
+    const JWT_DATA_USR                  = 'usr';
+    const JWT_DATA_TYPE                 = 'type';
+    const JWT_DATA_EMAIL                = 'email';
+    const JWT_DATA_DATA                 = 'data';
 
     //Errors
     const ERROR_INVALID_USR_PASSWD      = 'Incorrect username or password';
@@ -87,6 +94,7 @@ class Constants{
     const API_AUTH_ALLOWED_INPUT        = 2;
     const API_CREATE_USER_ALLOWED_INPUT = 4;
     const API_UPDATE_PROFILE_INPUT      = 10;
+    const API_FINDSHOP_ALLOWED_INPUT    = 3;
 
     //Rules
     const OTHER_MOBILE_ALLOWED_CHAR     = 10;
@@ -104,7 +112,8 @@ class Constants{
     const QUERY_INSERT_USER_LOGINS      = "INSERT INTO users_login (profile_status, joined, type, name, email, password, last_changed, token, mobile) VALUES ('N', NOW(), 'U', :name, :email, :password, NOW(), :token, :mobile)";
     const QUERY_UPDATE_USER_PROFILE     = 'INSERT INTO user_profile (email, firstname, lastname, mobile, address_one, address_two, city, country, postcode, updated_at) VALUES (
         :email, :firstname, :lastname, :mobile, :address_one, :address_two, :city, :country, :postcode, NOW())';
-
+    const QUERY_SELECT_TOKEN_FROM_EMAIL = 'SELECT token FROM users_login WHERE email = :email';
+    const QUERY_SELECT_ALLCLI_LATLNG    = "SELECT client_id, lat, lng, delivery_dis FROM client_shop_search WHERE active = 'Y'";
 
 }
 

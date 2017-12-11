@@ -7,8 +7,8 @@ $header = getallheaders();
 switch($_SERVER['REQUEST_METHOD']) {
 		case "GET" :
 				try{
-					if(isset($header['content-type'])){
-						if($header['content-type'] == 'application/json'){
+					if(isset($header[Constants::HEADER_CONTENT_TYPE_KEY])){
+						if($header[Constants::HEADER_CONTENT_TYPE_KEY] == Constants::HEADER_INCOME_METHOD_ALLOWED){
 							switch($_GET['url']){
 								case "findshops":
 									include 'request/GET/findshops.php';
@@ -48,6 +48,10 @@ switch($_SERVER['REQUEST_METHOD']) {
 
 								case 'profile':
 									include 'request/POST/post_profile.php';
+								break;
+
+								case "findshops":
+									include 'request/POST/post_findshops.php';
 								break;
 
 								default:

@@ -15,7 +15,7 @@
                     include 'db/DB.php';
                     $db = new DB();
                     $val = $db->selectQuery(Constants::QUERY_AUTH_CHECK_USER_EXIST,array(':email'=>$rec_username), Constants::DB_FETCH_ASSOC);
-                    if($val[Constants::DB_ROW_COUNT_KEY] === 0){
+                    if($val[Constants::DB_ROW_COUNT_KEY] === 0 || $val[Constants::DB_ROW_COUNT_KEY] === -1){
                         $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_UNAUTHORISED);
                     }else{
                         if(strlen($rec_password) === Constants::AUTH_LENGTH_SHA256){
@@ -58,16 +58,16 @@
                                     ), Constants::HTTP_SUCCESS_CODE_OK);
                                     exit();
                                 }else{
-                                    $output->error(Constants::ERROR_TECHNICAL_ISSUE, Constants::HTTP_ERROR_BADREQUEST);
+                                    $output->error(Constants::ERROR_TECHNICAL_ISSUE."Test 5", Constants::HTTP_ERROR_BADREQUEST);
                                     exit();
                                 }
     
                             }else{
-                                $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_UNAUTHORISED);
+                                $output->error(Constants::ERROR_INVALID_USR_PASSWD."Test 4", Constants::HTTP_ERROR_UNAUTHORISED);
                                 exit();
                             }
                         }else{
-                            $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_BADREQUEST);
+                            $output->error(Constants::ERROR_INVALID_USR_PASSWD."Test 3", Constants::HTTP_ERROR_BADREQUEST);
                             exit();
                         }
                     }
@@ -75,11 +75,11 @@
                 
             }
         }else{
-            $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_BADREQUEST);
+            $output->error(Constants::ERROR_INVALID_USR_PASSWD."Test 2", Constants::HTTP_ERROR_BADREQUEST);
             exit();
         }
     }else{
-        $output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::HTTP_ERROR_FORBIDDEN);
+        $output->error(Constants::ERROR_DEF_INVALID_REQUEST."Test 1", Constants::HTTP_ERROR_FORBIDDEN);
         exit();
     }
 

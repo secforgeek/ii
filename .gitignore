@@ -1,3 +1,11 @@
-test.php
-handles/AuthKeys.php
+# Home Files #
 .htaccess
+
+# Handles #
+handles/AuthKeys.php
+
+# Temp Files - Needs to get deleted when publishing #
+test.php
+
+# NOTES
+# handles/AuthKeys      = private keys

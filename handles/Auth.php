@@ -49,9 +49,9 @@ class Auth{
 
     public function generateData($wname, $type, $email){
         return $data = array(
-            "usr" => $wname,
-            "type" => $type,
-            "email" => $email
+            Constants::JWT_DATA_USR => $wname,
+            Constants::JWT_DATA_TYPE => $type,
+            Constants::JWT_DATA_EMAIL => $email
         );
     }
 }

@@ -20,6 +20,11 @@ class DB{
                 case Constants::DB_FETCH_NUM:
                     $data = $statement->fetch(PDO::FETCH_NUM);
                 break;
+
+                case Constants::DB_FETCH_ASSOC_ALL:
+                $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+                break;
+
             }
             $row = $statement->rowCount();
             if($row == 0){
@@ -30,7 +35,7 @@ class DB{
                 $this->reset();
             }
         }catch(PDOException $e){
-            return Constants::DB_EMPTY_VALUE;
+            return array(Constants::DB_ROW_COUNT_KEY => -1);
             $this->reset();
         }
     }
