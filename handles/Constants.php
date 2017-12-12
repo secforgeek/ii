@@ -14,10 +14,12 @@ class Constants{
     const DB_FETCH_NUM_ALL              = 'FETCH_NUM_ALL';
     const DB_ROW_COUNT_KEY              = 'crow';
     const DB_EMPTY_VALUE                = 'NULL_ERROR';
+    const DB_KEY_VALUE_ALL              = 'KEYVALUE_ALL';
 
     //Header 
     const HEADER_INCOME_METHOD_ALLOWED  = 'application/json';
     const HEADER_CONTENT_TYPE_KEY       = 'content-type';
+    
     //HTTP
     const HTTP_SUCCESS_CODE_OK          = 200;
     const HTTP_SUCCESS_CODE_ACCEPTED    = 202;
@@ -75,6 +77,7 @@ class Constants{
 
     //Success
     const SUCCESS_LOGGED_IN             = 'Successfully Logged In';
+    const SUCCESS_FETCH_MENU            = 'Listed Menu Items';
 
     //JSON Reply Head
     const JSON_MAIN_RESPONSE_TEXT       = 'response';
@@ -85,6 +88,7 @@ class Constants{
     const JSON_PROFILE_STATUS           = 'profile_status';
     const JSON_PUBLIC_KEY               = 'public_key';
     const JSON_MAIN_RESPONSE_ACTION     = 'action';
+    const JSON_ERROR_CODE_HEAD          = 'code';
 
     //JSON Action
     const JSON_ACTION_LOGOUT            = 'logout';
@@ -95,6 +99,7 @@ class Constants{
     const API_CREATE_USER_ALLOWED_INPUT = 4;
     const API_UPDATE_PROFILE_INPUT      = 10;
     const API_FINDSHOP_ALLOWED_INPUT    = 4;
+    const API_GETMENU_ALLOWED_INPUT     = 2;
 
     //Rules
     const OTHER_MOBILE_ALLOWED_CHAR     = 10;
@@ -102,6 +107,22 @@ class Constants{
     const OTHER_PREG_ALPHA_SPACE        = "/^[a-zA-Z ]+$/";
     const OTHER_PREG_ALPHA_NUM          = "/^[a-zA-Z0-9]+$/";
     const OTHER_PREG_ALPHA_NUM_SPACE    = "/^[a-zA-Z0-9 ]+$/";
+
+    //Debug Code
+    const ERROR_CODE_LEVEL_1            = '30001';
+    const ERROR_CODE_LEVEL_2            = '30002';
+    const ERROR_CODE_LEVEL_3            = '30003';
+    const ERROR_CODE_LEVEL_4            = '30004';
+    const ERROR_CODE_LEVEL_5            = '30005';
+    const ERROR_CODE_LEVEL_6            = '30006';
+    const ERROR_CODE_LEVEL_7            = '30007';
+    const ERROR_CODE_LEVEL_8            = '30008';
+    const ERROR_CODE_LEVEL_9            = '30009';
+    const ERROR_CODE_LEVEL_10           = '30010';
+    const ERROR_CODE_LEVEL_11           = '30011';
+    const ERROR_CODE_LEVEL_12           = '30012';
+    const ERROR_CODE_LEVEL_13           = '30013';
+    const ERROR_CODE_LEVEL_14           = '30014';
 
     //DB Query
     const QUERY_AUTH_CHECK_USER_EXIST   = 'SELECT name, email, password, type, profile_status FROM users_login WHERE email=:email';
@@ -114,7 +135,8 @@ class Constants{
         :email, :firstname, :lastname, :mobile, :address_one, :address_two, :city, :country, :postcode, NOW())';
     const QUERY_SELECT_TOKEN_FROM_EMAIL = 'SELECT token FROM users_login WHERE email = :email';
     const QUERY_SELECT_ALLCLI_LATLNG    = "SELECT client_id, name, profile_img, cuisine, delivery_fee, delivery_dis, min_order, lat, lng FROM client_shop_search WHERE active = 'Y' AND sub_category = :scategory ORDER BY delivery_dis ASC";
-
+    const QUERY_SELECT_CATG_FROM_CLIID  = 'SELECT category_id, category FROM client_shop_category WHERE client_id = :client';
+    const QUERY_SELECT_ALLMENU_FROM_CLID= 'SELECT category_id, item_topic, item_desc, price FROM client_shop_menu WHERE client_id = :client';
 }
 
 ?>

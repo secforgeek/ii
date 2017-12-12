@@ -50,8 +50,12 @@ switch($_SERVER['REQUEST_METHOD']) {
 									include 'request/POST/post_profile.php';
 								break;
 
-								case "findshops":
+								case 'findshops':
 									include 'request/POST/post_findshops.php';
+								break;
+
+								case 'getmenu':
+                                    include 'request/POST/post_getmenu.php';
 								break;
 
 								default:

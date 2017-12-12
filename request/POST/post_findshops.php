@@ -46,36 +46,36 @@
                                             exit();
                                         }
                                     }else{
-                                        $output->action(Constants::JSON_ACTION_LOGOUT."Test 8");
+                                        $output->action(Constants::JSON_ACTION_LOGOUT);
                                         exit();
                                     }
 
                                 }else{
-                                    $output->action(Constants::JSON_ACTION_LOGOUT."Test 7");
+                                    $output->action(Constants::JSON_ACTION_LOGOUT);
                                     exit();
                                 }
                             }else{
-                                $output->action(Constants::JSON_ACTION_LOGOUT."Test 6");
+                                $output->action(Constants::JSON_ACTION_LOGOUT);
                                 exit();
                             }
                     }else{
-                        $output->action(Constants::JSON_ACTION_LOGOUT."Test 5");
+                        $output->action(Constants::JSON_ACTION_LOGOUT);
                         exit();                        
                     }
                 }else{
-                    $output->error(Constants::ERROR_DEF_INVALID_REQUEST."Test 4", Constants::HTTP_ERROR_FORBIDDEN);
+                    $output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_4, Constants::HTTP_ERROR_FORBIDDEN);
                     exit();               
                 }
             }else{
-                $output->error(Constants::ERROR_DEF_INVALID_REQUEST."Test 3", Constants::HTTP_ERROR_FORBIDDEN);
+                $output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_3, Constants::HTTP_ERROR_FORBIDDEN);
                 exit();               
             }
         }else{
-            $output->error(Constants::ERROR_DEF_INVALID_REQUEST."Test 2", Constants::HTTP_ERROR_FORBIDDEN);
+            $output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_2, Constants::HTTP_ERROR_FORBIDDEN);
             exit();
         }
     }else{
-        $output->error(Constants::ERROR_DEF_INVALID_REQUEST."Test 1", Constants::HTTP_ERROR_FORBIDDEN);
+        $output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_1, Constants::HTTP_ERROR_FORBIDDEN);
         exit();
     }
 ?>

@@ -39,19 +39,19 @@ if (count((array)$postBody) == Constants::API_UPDATE_PROFILE_INPUT) {
 															":postcode" => $postBody->postcode);
 														if ($db -> InsertUpdateQuery(Constants::QUERY_UPDATE_USER_PROFILE, $params, 1)) {
 															$output -> action(Constants::JSON_ACTION_JOB_DONE);exit();
-														}else{$output->error(Constants::ERROR_TECHNICAL_ISSUE, Constants::HTTP_ERROR_BADREQUEST);exit();}	
-													} else {$output -> error(Constants::ERROR_INVALID_EMAIL, Constants::HTTP_ERROR_BADREQUEST);exit();}
-												} else {$output -> error(Constants::ERROR_INVALID_POSTCODE, Constants::HTTP_ERROR_BADREQUEST);exit();}
-											}else {$output -> error(Constants::ERROR_INVALID_COUNTRY, Constants::HTTP_ERROR_BADREQUEST);exit();}
-										} else {$output -> error(Constants::ERROR_INVALID_CITY, Constants::HTTP_ERROR_BADREQUEST);exit();}
-									} else{$output -> error(Constants::ERROR_INVALID_ADDRESS, Constants::HTTP_ERROR_BADREQUEST);exit();}
-								} else{$output -> error(Constants::ERROR_INVALID_ADDRESS, Constants::HTTP_ERROR_BADREQUEST);exit();}
-							} else{$output -> error(Constants::ERROR_INVALID_NAME, Constants::HTTP_ERROR_BADREQUEST);exit();}
-						} else{$output -> error(Constants::ERROR_INVALID_FIRSTNAME, Constants::HTTP_ERROR_BADREQUEST);exit();}
-					} else{$output -> error(Constants::ERROR_INVALID_MOBILE, Constants::HTTP_ERROR_BADREQUEST);exit();}
-				} else{$output -> error(Constants::ERROR_INVALID_EMAIL, Constants::HTTP_ERROR_BADREQUEST);exit();}
+														}else{$output->error(Constants::ERROR_TECHNICAL_ISSUE, Constants::ERROR_CODE_LEVEL_13, Constants::HTTP_ERROR_BADREQUEST);exit();}	
+													} else {$output -> error(Constants::ERROR_INVALID_EMAIL, Constants::ERROR_CODE_LEVEL_12, Constants::HTTP_ERROR_BADREQUEST);exit();}
+												} else {$output -> error(Constants::ERROR_INVALID_POSTCODE, Constants::ERROR_CODE_LEVEL_11, Constants::HTTP_ERROR_BADREQUEST);exit();}
+											}else {$output -> error(Constants::ERROR_INVALID_COUNTRY, Constants::ERROR_CODE_LEVEL_10, Constants::HTTP_ERROR_BADREQUEST);exit();}
+										} else {$output -> error(Constants::ERROR_INVALID_CITY, Constants::ERROR_CODE_LEVEL_9, Constants::HTTP_ERROR_BADREQUEST);exit();}
+									} else{$output -> error(Constants::ERROR_INVALID_ADDRESS, Constants::ERROR_CODE_LEVEL_8, Constants::HTTP_ERROR_BADREQUEST);exit();}
+								} else{$output -> error(Constants::ERROR_INVALID_ADDRESS, Constants::ERROR_CODE_LEVEL_7, Constants::HTTP_ERROR_BADREQUEST);exit();}
+							} else{$output -> error(Constants::ERROR_INVALID_NAME, Constants::ERROR_CODE_LEVEL_6, Constants::HTTP_ERROR_BADREQUEST);exit();}
+						} else{$output -> error(Constants::ERROR_INVALID_FIRSTNAME, Constants::ERROR_CODE_LEVEL_5, Constants::HTTP_ERROR_BADREQUEST);exit();}
+					} else{$output -> error(Constants::ERROR_INVALID_MOBILE, Constants::ERROR_CODE_LEVEL_4, Constants::HTTP_ERROR_BADREQUEST);exit();}
+				} else{$output -> error(Constants::ERROR_INVALID_EMAIL, Constants::ERROR_CODE_LEVEL_3, Constants::HTTP_ERROR_BADREQUEST);exit();}
 			} else{$output -> action(Constants::ERROR_INVALID_EMAIL);exit();}
 		} else{$output -> action(Constants::JSON_ACTION_LOGOUT);exit();}
-	}else{$output -> error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);exit();}
-}else{$output -> error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);exit();}
+	}else{$output -> error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::ERROR_CODE_LEVEL_2, Constants::HTTP_ERROR_BADREQUEST);exit();}
+}else{$output -> error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::ERROR_CODE_LEVEL_1, Constants::HTTP_ERROR_BADREQUEST);exit();}
 ?>

@@ -7,16 +7,16 @@
             $rec_username = $postBody->username;
             $rec_password = $postBody->password;    
             if(!filter_var($rec_username, FILTER_VALIDATE_EMAIL)){
-                $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_BADREQUEST);
+                $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::ERROR_CODE_LEVEL_9, Constants::HTTP_ERROR_BADREQUEST);
             }else{
                 if(empty($rec_username) || !filter_var($rec_username, FILTER_VALIDATE_EMAIL)){
-                    $output->error(Constants::ERROR_INVALID_USR_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
+                    $output->error(Constants::ERROR_INVALID_USR_FORMAT, Constants::ERROR_CODE_LEVEL_8, Constants::HTTP_ERROR_BADREQUEST);
                 }else{
                     include 'db/DB.php';
                     $db = new DB();
                     $val = $db->selectQuery(Constants::QUERY_AUTH_CHECK_USER_EXIST,array(':email'=>$rec_username), Constants::DB_FETCH_ASSOC);
                     if($val[Constants::DB_ROW_COUNT_KEY] === 0 || $val[Constants::DB_ROW_COUNT_KEY] === -1){
-                        $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_UNAUTHORISED);
+                        $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::ERROR_CODE_LEVEL_7, Constants::HTTP_ERROR_UNAUTHORISED);
                     }else{
                         if(strlen($rec_password) === Constants::AUTH_LENGTH_SHA256){
                             $md5 = hash('md5',$rec_password);
@@ -44,7 +44,7 @@
                                     break;
 
                                     default:
-                                        $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::HTTP_ERROR_BADREQUEST); 
+                                        $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::ERROR_CODE_LEVEL_6, Constants::HTTP_ERROR_BADREQUEST); 
                                         exit();
                                     break;
                                 }
@@ -58,16 +58,16 @@
                                     ), Constants::HTTP_SUCCESS_CODE_OK);
                                     exit();
                                 }else{
-                                    $output->error(Constants::ERROR_TECHNICAL_ISSUE."Test 5", Constants::HTTP_ERROR_BADREQUEST);
+                                    $output->error(Constants::ERROR_TECHNICAL_ISSUE, Constants::ERROR_CODE_LEVEL_5, Constants::HTTP_ERROR_BADREQUEST);
                                     exit();
                                 }
     
                             }else{
-                                $output->error(Constants::ERROR_INVALID_USR_PASSWD."Test 4", Constants::HTTP_ERROR_UNAUTHORISED);
+                                $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::ERROR_CODE_LEVEL_4, Constants::HTTP_ERROR_UNAUTHORISED);
                                 exit();
                             }
                         }else{
-                            $output->error(Constants::ERROR_INVALID_USR_PASSWD."Test 3", Constants::HTTP_ERROR_BADREQUEST);
+                            $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::ERROR_CODE_LEVEL_3, Constants::HTTP_ERROR_BADREQUEST);
                             exit();
                         }
                     }
@@ -75,11 +75,11 @@
                 
             }
         }else{
-            $output->error(Constants::ERROR_INVALID_USR_PASSWD."Test 2", Constants::HTTP_ERROR_BADREQUEST);
+            $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::ERROR_CODE_LEVEL_2, Constants::HTTP_ERROR_BADREQUEST);
             exit();
         }
     }else{
-        $output->error(Constants::ERROR_DEF_INVALID_REQUEST."Test 1", Constants::HTTP_ERROR_FORBIDDEN);
+        $output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_1, Constants::HTTP_ERROR_FORBIDDEN);
         exit();
     }
 

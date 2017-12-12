@@ -35,35 +35,35 @@
                                     ), Constants::HTTP_SUCCESS_CODE_OK);
                                     exit();
                                 }else{
-                                    $output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
+                                    $output->error(Constants::ERROR_DB_PDO_ERROR, Constants::ERROR_CODE_LEVEL_8, Constants::HTTP_ERROR_BADREQUEST);
                                     exit();                     
                                 }
                             }else{
-                                $output->error(Constants::ERROR_CREATE_EMAIL_EXISTS, Constants::HTTP_ERROR_BADREQUEST);
+                                $output->error(Constants::ERROR_CREATE_EMAIL_EXISTS, Constants::ERROR_CODE_LEVEL_7, Constants::HTTP_ERROR_BADREQUEST);
                                 exit();
                             }                           
                         }else{
-                            $output->error(Constants::ERROR_INVALID_FIRSTNAME, Constants::HTTP_ERROR_BADREQUEST);
+                            $output->error(Constants::ERROR_INVALID_FIRSTNAME, Constants::ERROR_CODE_LEVEL_6, Constants::HTTP_ERROR_BADREQUEST);
                             exit();                            
                         }
                     }else{
-                        $output->error(Constants::ERROR_INVALID_PASSWORD, Constants::HTTP_ERROR_BADREQUEST);
+                        $output->error(Constants::ERROR_INVALID_PASSWORD, Constants::ERROR_CODE_LEVEL_5, Constants::HTTP_ERROR_BADREQUEST);
                         exit();                         
                     }
                 }else{
-                    $output->error(Constants::ERROR_INVALID_MOBILE, Constants::HTTP_ERROR_BADREQUEST);
+                    $output->error(Constants::ERROR_INVALID_MOBILE, Constants::ERROR_CODE_LEVEL_4, Constants::HTTP_ERROR_BADREQUEST);
                     exit();                    
                 }
             }else{
-                $output->error(Constants::ERROR_INVALID_USERNAME, Constants::HTTP_ERROR_BADREQUEST);
+                $output->error(Constants::ERROR_INVALID_USERNAME, Constants::ERROR_CODE_LEVEL_3, Constants::HTTP_ERROR_BADREQUEST);
                 exit();               
             }
         }else{
-            $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
+            $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::ERROR_CODE_LEVEL_2, Constants::HTTP_ERROR_BADREQUEST);
             exit();
         }
     }else{
-        $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::HTTP_ERROR_FORBIDDEN);
+        $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::ERROR_CODE_LEVEL_1, Constants::HTTP_ERROR_FORBIDDEN);
         exit();
     } 
 ?>

@@ -22,7 +22,11 @@ class DB{
                 break;
 
                 case Constants::DB_FETCH_ASSOC_ALL:
-                $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+                break;
+
+                case Constants::DB_KEY_VALUE_ALL:
+                    $data = $statement->fetchAll(PDO::FETCH_KEY_PAIR);
                 break;
 
             }

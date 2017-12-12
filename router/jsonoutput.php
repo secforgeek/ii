@@ -2,9 +2,10 @@
 
 class Jsonoutput{
 
-    function error($sending_data, $ecode){
+    function error($sending_data, $debugcode, $ecode){
         $data = array(
-            Constants::JSON_HEADING_ERROR => $sending_data
+            Constants::JSON_HEADING_ERROR => $sending_data,
+            Constants::JSON_ERROR_CODE_HEAD => $debugcode
         );
         $this->send($data);
         http_response_code($ecode);
