@@ -109,6 +109,7 @@ class Constants{
     const OTHER_PREG_ALPHA_NUM_SPACE    = "/^[a-zA-Z0-9 ]+$/";
 
     //Debug Code
+    const ERROR_CODE_LEVEL_DEFAULT      = '30000';
     const ERROR_CODE_LEVEL_1            = '30001';
     const ERROR_CODE_LEVEL_2            = '30002';
     const ERROR_CODE_LEVEL_3            = '30003';

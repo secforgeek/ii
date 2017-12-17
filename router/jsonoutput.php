@@ -36,7 +36,7 @@ class Jsonoutput{
     }   
 
     function defaultError($ecode){
-        $this->error(Constants::ERROR_DEF_INVALID_REQUEST, $ecode);
+        $this->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_DEFAULT, $ecode);
     }
 
     //Send Output

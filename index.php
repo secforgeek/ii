@@ -20,15 +20,15 @@ switch($_SERVER['REQUEST_METHOD']) {
 								break;
 							}
 						}else{
-							$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
+							$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::ERROR_CODE_LEVEL_3, Constants::HTTP_ERROR_BADREQUEST);
 							exit();
 						}
 					}else{
-						$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
+						$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::ERROR_CODE_LEVEL_2 ,Constants::HTTP_ERROR_BADREQUEST);
 						exit();						
 					}
 				}catch(Exception $e){
-					$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
+					$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::ERROR_CODE_LEVEL_1 ,Constants::HTTP_ERROR_BADREQUEST);
 					exit();
 				}
 			break;
@@ -64,15 +64,15 @@ switch($_SERVER['REQUEST_METHOD']) {
 								break;				
 							}
 						}else{
-							$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::HTTP_ERROR_BADREQUEST);
+							$output->error(Constants::ERROR_INVALID_REQ_FORMAT, Constants::ERROR_CODE_LEVEL_3 ,Constants::HTTP_ERROR_BADREQUEST);
 							exit();
 						}
 					}else{
-						$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
+						$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::ERROR_CODE_LEVEL_2 ,Constants::HTTP_ERROR_BADREQUEST);
 						exit();						
 					}
 				}catch(Exception $e){
-					$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::HTTP_ERROR_BADREQUEST);
+					$output->error(Constants::ERROR_DB_PDO_ERROR, Constants::ERROR_CODE_LEVEL_1 ,Constants::HTTP_ERROR_BADREQUEST);
 					exit();	
 				}
 			break;
