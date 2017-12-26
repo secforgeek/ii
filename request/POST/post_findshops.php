@@ -46,20 +46,20 @@
                                             exit();
                                         }
                                     }else{
-                                        $output->action(Constants::JSON_ACTION_LOGOUT);
+                                        $output->action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_8);
                                         exit();
                                     }
 
                                 }else{
-                                    $output->action(Constants::JSON_ACTION_LOGOUT);
+                                    $output->action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_7);
                                     exit();
                                 }
                             }else{
-                                $output->action(Constants::JSON_ACTION_LOGOUT);
+                                $output->action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_6);
                                 exit();
                             }
                     }else{
-                        $output->action(Constants::JSON_ACTION_LOGOUT);
+                        $output->action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_5);
                         exit();                        
                     }
                 }else{

@@ -26,9 +26,10 @@ class Jsonoutput{
         http_response_code($ecode);
     }
 
-    function action($sending_data){
+    function action($sending_data, $ecode){
         $data = array(
-            Constants::JSON_MAIN_RESPONSE_ACTION => $sending_data
+            Constants::JSON_MAIN_RESPONSE_ACTION => $sending_data,
+            Constants::JSON_ERROR_CODE_HEAD => $ecode
         );
         $this->send($data);
         http_response_code(Constants::HTTP_SUCCESS_CODE_OK);
