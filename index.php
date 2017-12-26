@@ -1,4 +1,8 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header('Allow: GET, POST');
+header('Access-Control-Allow-Headers: Origin, Content-Type');
+
 include "router/jsonoutput.php";
 include "handles/Constants.php";
 $output = new Jsonoutput();
@@ -78,7 +82,6 @@ switch($_SERVER['REQUEST_METHOD']) {
 			break;
 	
 		default :		
-			header('Allow: GET, POST');
 			$output->defaultError(Constants::HTTP_ERROR_METHODNOTALLOWED);
 			exit();
 		break;

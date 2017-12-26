@@ -8,7 +8,6 @@ class Jsonoutput{
             Constants::JSON_ERROR_CODE_HEAD => $debugcode
         );
         $this->send($data);
-        http_response_code($ecode);
     }
 
     function success($sending_data, $recdata, $ecode){
