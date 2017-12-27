@@ -28,7 +28,7 @@
                                             $r[] = $menu_item;
                                         }
                                     }
-                                    $return_array[] = array($catg['category'] => $r);
+                                    $return_array[] = array("category_name" => $catg['category'], "category_child" => $r);
                                 }
                                 $output->success(Constants::SUCCESS_FETCH_MENU, $return_array, Constants::HTTP_SUCCESS_CODE_OK);
                                 exit();
