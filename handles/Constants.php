@@ -137,7 +137,7 @@ class Constants{
     const QUERY_SELECT_TOKEN_FROM_EMAIL = 'SELECT token FROM users_login WHERE email = :email';
     const QUERY_SELECT_ALLCLI_LATLNG    = "SELECT client_id, name, profile_img, cuisine, delivery_fee, delivery_dis, min_order, lat, lng FROM client_shop_search WHERE active = 'Y' AND sub_category = :scategory ORDER BY delivery_dis ASC";
     const QUERY_SELECT_CATG_FROM_CLIID  = 'SELECT category_id, category FROM client_shop_category WHERE client_id = :client';
-    const QUERY_SELECT_ALLMENU_FROM_CLID= 'SELECT category_id, item_topic, item_desc_yn, item_desc, price FROM client_shop_menu WHERE client_id = :client';
+    const QUERY_SELECT_ALLMENU_FROM_CLID= 'SELECT category_id, item_topic_id, item_topic, item_desc_yn, item_desc, price FROM client_shop_menu WHERE client_id = :client';
 }
 
 ?>

@@ -33,23 +33,23 @@
                                 $output->success(Constants::SUCCESS_FETCH_MENU, $return_array, Constants::HTTP_SUCCESS_CODE_OK);
                                 exit();
                             }else{
-                                $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::ERROR_CODE_LEVEL_5 ,Constants::HTTP_ERROR_BADREQUEST);
+                                $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::ERROR_CODE_LEVEL_8 ,Constants::HTTP_ERROR_BADREQUEST);
                                 exit();
                             }    
                           }else{
-                            $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::ERROR_CODE_LEVEL_4 ,Constants::HTTP_ERROR_BADREQUEST);
+                            $output->error(Constants::ERROR_INVALID_INPUT_FORMAT, Constants::ERROR_CODE_LEVEL_7 ,Constants::HTTP_ERROR_BADREQUEST);
                             exit();
                           }
                         }else{
-                            $output -> action(Constants::JSON_ACTION_LOGOUT);
+                            $output -> action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_6);
                             exit();                           
                         }
                     }else{
-                        $output -> action(Constants::JSON_ACTION_LOGOUT);
+                        $output -> action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_5);
                         exit();
                     }
                 } else{
-                    $output -> action(Constants::JSON_ACTION_LOGOUT);
+                    $output -> action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_4);
                     exit();
                 }
             }else{
