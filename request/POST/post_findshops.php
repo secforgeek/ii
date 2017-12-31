@@ -22,6 +22,7 @@
                                             include 'handles/IncludeClasses.php';
                                             $calc = new DistanceCalc();
                                             $return_array = array();
+                                            $count = 0;
                                             foreach($dbres as $key){
                                                 if(isset($key['lat']) && isset($key['lng'])){
                                                     $km = $calc->CalculateDistance($postBody->lat, $postBody->lng, $key['lat'], $key['lng']);
@@ -35,15 +36,21 @@
                                                             "distance" => $km,
                                                             "minimum_order" => $key['min_order']
                                                         );
+                                                        $count++;
                                                         $return_array[] = $jreturn;
                                                     }
                                                 }
                                             }
-                                            $output->success("Restaurants Found", $return_array, Constants::HTTP_SUCCESS_CODE_OK);
-                                            exit();                                            
+                                            if($count > 0){
+                                                $output->success("Restaurants Found", $return_array, Constants::HTTP_SUCCESS_CODE_OK);
+                                                exit(); 
+                                            }else{
+                                                $output->error("No Restaurants Found", null, Constants::HTTP_SUCCESS_CODE_OK);
+                                                exit(); 
+                                            }                                           
                                         }else{
-                                            $output->success("No Restaurants Found", null, Constants::HTTP_SUCCESS_CODE_OK);
-                                            exit();
+                                            $output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_9);
+                                            exit(); 
                                         }
                                     }else{
                                         $output->action(Constants::JSON_ACTION_LOGOUT, Constants::ERROR_CODE_LEVEL_8);
