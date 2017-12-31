@@ -26,6 +26,13 @@ class Jsonoutput{
         http_response_code($ecode);
     }
 
+    function custom($customTag, $customVal){
+        $data = array(
+            $customTag => $customVal
+        );
+        $this->send($data);
+    }
+
     function action($sending_data, $ecode){
         $data = array(
             Constants::JSON_MAIN_RESPONSE_ACTION => $sending_data,
