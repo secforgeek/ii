@@ -2,7 +2,7 @@
 
 class Jsonoutput{
 
-    function error($sending_data, $debugcode, $ecode){
+    function error($sending_data, $debugcode){
         $data = array(
             Constants::JSON_HEADING_ERROR => $sending_data,
             Constants::JSON_ERROR_CODE_HEAD => $debugcode

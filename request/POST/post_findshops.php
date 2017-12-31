@@ -45,7 +45,7 @@
                                                 $output->success("Restaurants Found", $return_array, Constants::HTTP_SUCCESS_CODE_OK);
                                                 exit(); 
                                             }else{
-                                                $output->error("No Restaurants Found", null, Constants::HTTP_SUCCESS_CODE_OK);
+                                                $output->error("No Restaurants Found", Constants::ERROR_CODE_LEVEL_10);
                                                 exit(); 
                                             }                                           
                                         }else{
