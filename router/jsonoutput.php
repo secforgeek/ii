@@ -10,7 +10,7 @@ class Jsonoutput{
         $this->send($data);
     }
 
-    function success($sending_data, $recdata, $ecode){
+    function success($sending_data, $recdata, $ecode = Constants::HTTP_SUCCESS_CODE_OK){
         if($recdata != NULL){
             $data = array(
                 Constants::JSON_HEADING_SUCCESS => $sending_data,

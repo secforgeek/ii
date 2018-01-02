@@ -61,6 +61,10 @@ switch($_SERVER['REQUEST_METHOD']) {
 								case 'getmenu':
                                     include 'request/POST/post_getmenu.php';
 								break;
+								
+								case 'verifycart':
+									include 'request/POST/post_verifycart.php';	
+								break;
 
 								default:
 									$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
