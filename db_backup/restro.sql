@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2018 at 02:29 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Jan 02, 2018 at 11:28 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -186,6 +186,34 @@ CREATE TABLE `error_handles` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order_book`
+--
+
+CREATE TABLE `order_book` (
+  `id` int(11) NOT NULL,
+  `order_time` datetime NOT NULL,
+  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `client_id` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `order_placed` int(1) NOT NULL DEFAULT '0',
+  `order_accepted` int(1) NOT NULL DEFAULT '0',
+  `delivery` char(1) NOT NULL,
+  `payment_mode` varchar(3) NOT NULL,
+  `data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_book`
+--
+
+INSERT INTO `order_book` (`id`, `order_time`, `last_update`, `client_id`, `email`, `order_placed`, `order_accepted`, `delivery`, `payment_mode`, `data`) VALUES
+(1, '2018-01-02 21:30:29', '2018-01-02 21:30:29', '5d41402abc4b2a76b9719d688917c592', 'username@gmail.com', 1, 0, 'C', 'CCC', '[[{\"name\":\"Pepsi\",\"quantity\":1,\"price\":2.99},{\"name\":\"7-Up\",\"quantity\":1,\"price\":4.98}],{\"subtotal\":4.98,\"charges\":12,\"total\":16.98}]'),
+(2, '2018-01-02 22:23:43', '2018-01-02 22:23:43', '5d41402abc4b2a76b9719d688917c592', 'username@gmail.com', 1, 0, 'D', 'CCC', '[[{\"name\":\"Pepsi\",\"quantity\":1,\"price\":\"2.99\"},{\"name\":\"7-Up\",\"quantity\":1,\"price\":\"1.99\"}],{\"subtotal\":\"4.98\",\"charges\":\"12.00\",\"total\":\"16.98\"}]'),
+(3, '2018-01-02 22:24:28', '2018-01-02 22:24:28', '5d41402abc4b2a76b9719d688917c592', 'username@gmail.com', 1, 0, 'D', 'CCC', '[[{\"name\":\"Pepsi\",\"quantity\":2,\"price\":\"5.98\"},{\"name\":\"7-Up\",\"quantity\":1,\"price\":\"1.99\"},{\"name\":\"Chicken Pizza\",\"quantity\":2,\"price\":\"21.98\"},{\"name\":\"Lamp Pizza\",\"quantity\":3,\"price\":\"38.97\"}],{\"subtotal\":\"68.92\",\"charges\":\"12.00\",\"total\":\"80.92\"}]');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users_login`
 --
 
@@ -210,7 +238,7 @@ CREATE TABLE `users_login` (
 --
 
 INSERT INTO `users_login` (`id`, `profile_status`, `joined`, `type`, `name`, `email`, `password`, `last_changed`, `token`, `mobile`, `verified_mob`, `verified_email`, `updated_at`) VALUES
-(1, 'N', '2017-12-05 20:46:22', 'U', 'Test', 'username@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ2NzE2ODUsImV4cCI6MzAzMDU1Mjk3MCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.HePE7hlK4H2JjEzh_juCNk6q-FaxR7Bi4FtbDQXFcDr7eKxlq3qmn-0BvIJDDTv1fxu0IWdEfVGhjUZx2LjkN4j5oQVJYUHBrx3zs4Q5LTeb3ZRmOoZ_0fpnclSC6iA7liW0yWqcuV-dyjbWqHk6m4NKJHFc3SMWiPeOw1sjD2U', 1234567890, '', '', '2017-12-30 22:08:05'),
+(1, 'N', '2017-12-05 20:46:22', 'U', 'Test', 'username@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ5Mjk5MDUsImV4cCI6MzAzMTA2OTQxMCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.VfgAm4rwbLmQ-OajEQ3JAgwinTWemHSkQGqaDtniHTdcvn_1E0uoBjf_Ux-N8DxC9j-3q2sQUql1MHLa41mXawfpty21O1cL9mIDj817a5a7algjY3Pj8iNEFH1je6te3S8GPVrULxvb_4ZwRrOOYo4tEU-vy49Rhz_6OtyBjGI', 1234567890, '', '', '2018-01-02 21:51:45'),
 (2, 'N', '2017-12-05 21:50:43', 'U', 'Test2', 'usernameh@gmail.com', '$2y$10$OflNGOLMHxOFn5V5gUSsgeGAIAvhUwE1m1eVqNlsHVaIILWhxfBEi', '2017-12-05 21:50:43', 'eyJ0eXAiOiJKV1QiLCJhbGcdsadahhsddsadaaiOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbWVoQGdtYWlsLmNvbSIsInR5cGUiOiJVIn0.WXhF41PvgUUAo2k_217gRsLrw2AzQJLzPg-HX7FmO_G756-TJhmr5MBgHOMS-71MaLNmXoK-6mv1_SF3H1M8eCOPVACLih20bnfeJohQJhU1kJeOmBcErxZkVaulkA2Yvfj2DtIgXIxC', 1234567895, '', '', '2017-12-10 20:43:02'),
 (3, 'N', '2017-12-05 23:42:22', 'U', 'asdsadghf', 'usernam@gmail.com', '$2y$10$bPJGMIxgzhhtxFDxtOsY9.K72GoAfB1LaxPoZbUdYH6ZM2gU.cURG', '2017-12-05 23:42:22', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbUBnbWFpbC5jb20iLCJ0eXBlIjoiVSJ9.aOjaQo5fzhBFGexqmNzudyIePa1Nd7nqSADNc0JxnISfQfUzkGkjgjeVSP-tIOEkli1EtPasDncimtaSseGDxW4vYfcEcDKYsNzmgbNiVBfcynvV0lifWXccYDErt9T2XQMMU_sNi1CPprh5hzWhtp6qBzRCg3', 1234567894, '', '', '2017-12-05 23:42:22'),
 (4, 'N', '2017-12-05 23:44:07', 'U', 'Akshay', 'akshay@gmail.com', '$2y$10$dO3IN05IIink0miMmIAf2u5pintq.OPcad/WtOucYmTRl5ITPhwY2', '2017-12-05 23:44:07', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoiYWtzaGF5QGdtYWlsLmNvbSIsInR5cGUiOiJVIn0.t99FBl5sfGOm3HvAhpm2vNXgiBxYJ9Ts58GTf8pRoaqy9nZjAa9nYxUTs0B1L2Fl6ykHvGEGkdbOtfrsEuZaTGkTe3MvQzu4gGbW1VWSKhTybtXXPnuGK6fjSVQuKsDfw7WayNifEiccdhr-zmCtd_0lRyhLmjF', 1234567891, '', '', '2017-12-05 23:44:07'),
@@ -297,6 +325,13 @@ ALTER TABLE `error_handles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `order_book`
+--
+ALTER TABLE `order_book`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `client_id` (`client_id`);
+
+--
 -- Indexes for table `users_login`
 --
 ALTER TABLE `users_login`
@@ -353,6 +388,12 @@ ALTER TABLE `error_handles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `order_book`
+--
+ALTER TABLE `order_book`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users_login`
 --
 ALTER TABLE `users_login`
@@ -400,6 +441,12 @@ ALTER TABLE `client_shop_owners`
 ALTER TABLE `client_shop_search`
   ADD CONSTRAINT `client_shop_search_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client_shop_details` (`client_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `client_shop_search_ibfk_3` FOREIGN KEY (`name`) REFERENCES `client_shop_details` (`name`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_book`
+--
+ALTER TABLE `order_book`
+  ADD CONSTRAINT `order_book_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client_shop_search` (`client_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_profile`
