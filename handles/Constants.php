@@ -141,6 +141,8 @@ class Constants{
     const QUERY_SELECT_ALLMENU_FROM_CLID= 'SELECT category_id, item_topic_id, item_topic, item_desc_yn, item_desc, price FROM client_shop_menu WHERE client_id = :client';
     const QUERY_CHECK_SHOP_DELIPRICE    = 'SELECT active, delivery_fee, watznear_charge, min_order FROM client_shop_search WHERE client_id = :client';
     const QUERY_SELECT_ALL_MENU_WITHCLID= 'SELECT item_topic_id, price FROM client_shop_menu WHERE client_id = :client';
+    const QUERY_INSERT_ORDER_BOOK       = "INSERT INTO order_book (order_time, last_update, client_id, email, order_placed, delivery, payment_mode, data) VALUES (NOW(), NOW(), :client, 
+        :email, '1', :delivery, :payment_mode, :data)";
 }
 
 ?>

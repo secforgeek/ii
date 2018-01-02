@@ -18,23 +18,31 @@ if(count((array)$postBody) === Constants::API_VERIFYCART_INPUT){
 				if($db_shop[Constants::DB_ROW_COUNT_KEY] === 1){
 					if($db_shop['active'] === "Y"){
 						if($data->price->total >= $db_shop['min_order']){
-							$t = $db_shop['watznear_charge'] + $db_shop['delivery_fee'];
-							if($t === $data->price->charges){
+							$ordercharge = number_format($db_shop['watznear_charge'] + $db_shop['delivery_fee'], 2);
+							if($ordercharge === $data->price->charges){
 								$db_menu = $db->selectQuery(Constants::QUERY_SELECT_ALL_MENU_WITHCLID, array(":client" => $data->shopid), Constants::DB_FETCH_ASSOC_ALL);
 								if($db_menu[Constants::DB_ROW_COUNT_KEY] > 0){
 									unset($db_menu[Constants::DB_ROW_COUNT_KEY]); 
 									$counter = 0;
-									$TotalAmountCheck = 0;
+									$subtotal = 0;
+									$sender = array();
 									foreach($data->item as $item){
 										if(in_array(array("item_topic_id" => $item->item_id, "price"=> $item->price), $db_menu)){
-											$TotalAmountCheck += $item->quantity * $item->price;
+											$subtotal += number_format($item->quantity * $item->price, 2);
+											$sender[] = array("name"=>$item->name, "quantity"=>$item->quantity, "price"=>number_format($item->quantity * $item->price, 2));
 											$counter++;
 										}
-									}
+									}									
 									if((count($data->item) === $counter)){
-										$Total = $TotalAmountCheck + $t; 
+										$Total = number_format($subtotal + $ordercharge, 2); 
 										if($Total === $data->price->total){
-											$output->success("Success", null);
+											$bsv = json_encode(array($sender, $data->price));
+											$result = $db->InsertUpdateQuery(Constants::QUERY_INSERT_ORDER_BOOK, array(":client" => $data->shopid, ":email" => $res[Constants::JWT_DATA_DATA]->email,":delivery" => $data->del_method, ":payment_mode" => "CCC", ":data" => $bsv), 1);
+											if($result){
+												$output->custom("done", "Insert Sucess");
+											}else{
+												$output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_12);
+											}
 										}else{
 											$output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_11); //unable to match total price
 											exit();		
