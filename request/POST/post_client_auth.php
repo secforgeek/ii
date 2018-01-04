@@ -14,7 +14,7 @@
                 }else{
                     include 'db/DB.php';
                     $db = new DB();
-                    $val = $db->selectQuery(Constants::QUERY_AUTH_CHECK_USER_EXIST,array(':email'=>$rec_username), Constants::DB_FETCH_ASSOC);
+                    $val = $db->selectQuery(Constants::QUERY_CLI_AUTH_CHECK_USER_EXIST,array(':email'=>$rec_username), Constants::DB_FETCH_ASSOC);
                     if($val[Constants::DB_ROW_COUNT_KEY] === 0 || $val[Constants::DB_ROW_COUNT_KEY] === -1){
                         $output->error(Constants::ERROR_INVALID_USR_PASSWD, Constants::ERROR_CODE_LEVEL_8);
                     }else{
@@ -25,7 +25,7 @@
                                     require_once 'handles/Auth.php';
                                     $auth = new Auth(); 
                                     include 'handles/AuthKeys.php';
-                                    $data = $auth->generateData($val['name'], Constants::AUTH_TOKEN_ACCESS_USER,  $val['email']);
+                                    $data = $auth->generateData($val['name'], Constants::AUTH_TOKEN_ACCESS_CLIENT,  $val['email']);
                                     $tk = $auth->generateToken($prk, $data, Constants::JWT_EXPIRE_IN_14_DAYS);
                                     if($db->InsertUpdateQuery(Constants::QUERY_AUTH_USER_FCM_TOKEN_UPDATE, array(':token' => $tk, ':user' => $rec_username, ':fcm' => $postBody->fcm), 1)){
                                         $output->success(Constants::SUCCESS_LOGGED_IN, 

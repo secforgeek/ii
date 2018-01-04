@@ -151,7 +151,10 @@ class Constants{
     :email, '1', :delivery, :payment_mode, :data)";
 
     //Client
-    const QUERY_CLI_SEL_FCM_FROM_SHOPID     = 'SELECT fcm FROM clients_login WHERE client_id=:client';
+    const QUERY_CLI_SEL_FCM_FROM_SHOPID         = 'SELECT fcm FROM clients_login WHERE client_id=:client';
+    const QUERY_CLI_AUTH_CHECK_USER_EXIST       = 'SELECT name, email, password, type, profile_status, fcm FROM clients_login WHERE email=:email';
+    const QUERY_CLI_AUTH_USER_FCM_TOKEN_UPDATE  = 'UPDATE clients_login SET token=:token, fcm=:fcm WHERE email=:user';
+
 }
 
 ?>
