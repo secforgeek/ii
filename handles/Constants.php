@@ -15,6 +15,8 @@ class Constants{
     const DB_ROW_COUNT_KEY              = 'crow';
     const DB_EMPTY_VALUE                = 'NULL_ERROR';
     const DB_KEY_VALUE_ALL              = 'KEYVALUE_ALL';
+    const DB_PAYMENT_CARD               = 'CCC';
+    const DB_PAYMENT_CASH               = 'COD';
 
     //Header 
     const HEADER_INCOME_METHOD_ALLOWED  = 'application/json';
@@ -95,7 +97,7 @@ class Constants{
     const JSON_ACTION_JOB_DONE          = 'success';
 
     //API allowed input
-    const API_AUTH_ALLOWED_INPUT        = 2;
+    const API_AUTH_ALLOWED_INPUT        = 3;
     const API_CREATE_USER_ALLOWED_INPUT = 4;
     const API_UPDATE_PROFILE_INPUT      = 10;
     const API_FINDSHOP_ALLOWED_INPUT    = 4;
@@ -127,22 +129,29 @@ class Constants{
     const ERROR_CODE_LEVEL_14           = '30014';
 
     //DB Query
-    const QUERY_AUTH_CHECK_USER_EXIST   = 'SELECT name, email, password, type, profile_status FROM users_login WHERE email=:email';
-    const QUERY_IF_EMAIL_AND_MOB_EXISTS = 'SELECT email FROM users_login WHERE email = :email OR mobile = :mobile';
-    const QUERY_SELECT_EMAIL_USRSPROFILE= 'SELECT * FROM users_login WHERE email = :email';
-    const QUERY_AUTH_USER_TOKEN_UPDATE  = 'UPDATE users_login SET token=:token, updated_at=NOW() WHERE email=:user';
-    const QUERY_CREATE_USER             = "INSERT INTO users_login (joined, type, email, password, mobile) VALUES (NOW(), 'U', :email, :password, :mobile)";
-    const QUERY_INSERT_USER_LOGINS      = "INSERT INTO users_login (profile_status, joined, type, name, email, password, last_changed, token, mobile) VALUES ('N', NOW(), 'U', :name, :email, :password, NOW(), :token, :mobile)";
-    const QUERY_UPDATE_USER_PROFILE     = 'INSERT INTO user_profile (email, firstname, lastname, mobile, address_one, address_two, city, country, postcode, updated_at) VALUES (
+    const QUERY_AUTH_CHECK_USER_EXIST       = 'SELECT name, email, password, type, profile_status, fcm FROM users_login WHERE email=:email';
+    const QUERY_IF_EMAIL_AND_MOB_EXISTS     = 'SELECT email FROM users_login WHERE email = :email OR mobile = :mobile';
+    const QUERY_SELECT_EMAIL_USRSPROFILE    = 'SELECT * FROM users_login WHERE email = :email';
+    const QUERY_AUTH_USER_TOKEN_UPDATE      = 'UPDATE users_login SET token=:token, updated_at=NOW() WHERE email=:user';
+    const QUERY_AUTH_USER_FCM_TOKEN_UPDATE  = 'UPDATE users_login SET token=:token, updated_at=NOW(), fcm=:fcm WHERE email=:user';
+    const QUERY_CREATE_USER                 = "INSERT INTO users_login (joined, type, email, password, mobile) VALUES (NOW(), 'U', :email, :password, :mobile)";
+    const QUERY_INSERT_USER_LOGINS          = "INSERT INTO users_login (profile_status, joined, type, name, email, password, last_changed, token, mobile) VALUES ('N', NOW(), 'U', :name, :email, :password, NOW(), :token, :mobile)";
+    const QUERY_UPDATE_USER_PROFILE         = 'INSERT INTO user_profile (email, firstname, lastname, mobile, address_one, address_two, city, country, postcode, updated_at) VALUES (
         :email, :firstname, :lastname, :mobile, :address_one, :address_two, :city, :country, :postcode, NOW())';
-    const QUERY_SELECT_TOKEN_FROM_EMAIL = 'SELECT token FROM users_login WHERE email = :email';
-    const QUERY_SELECT_ALLCLI_LATLNG    = "SELECT client_id, name, profile_img, cuisine, delivery_fee, delivery_dis, min_order, lat, lng FROM client_shop_search WHERE active = 'Y' AND sub_category = :scategory ORDER BY delivery_dis ASC";
-    const QUERY_SELECT_CATG_FROM_CLIID  = 'SELECT category_id, category FROM client_shop_category WHERE client_id = :client';
-    const QUERY_SELECT_ALLMENU_FROM_CLID= 'SELECT category_id, item_topic_id, item_topic, item_desc_yn, item_desc, price FROM client_shop_menu WHERE client_id = :client';
-    const QUERY_CHECK_SHOP_DELIPRICE    = 'SELECT active, delivery_fee, watznear_charge, min_order FROM client_shop_search WHERE client_id = :client';
-    const QUERY_SELECT_ALL_MENU_WITHCLID= 'SELECT item_topic_id, price FROM client_shop_menu WHERE client_id = :client';
-    const QUERY_INSERT_ORDER_BOOK       = "INSERT INTO order_book (order_time, last_update, client_id, email, order_placed, delivery, payment_mode, data) VALUES (NOW(), NOW(), :client, 
+    const QUERY_SELECT_TOKEN_FROM_EMAIL     = 'SELECT token FROM users_login WHERE email = :email';
+    const QUERY_SEL_TOKEN_ACT_FCM_FROM_EML  = 'SELECT token, profile_status, fcm FROM users_login WHERE email = :email';
+    const QUERY_SELECT_ALLCLI_LATLNG        = "SELECT client_id, name, profile_img, cuisine, delivery_fee, delivery_dis, min_order, lat, lng FROM client_shop_search WHERE active = 'Y' AND sub_category = :scategory ORDER BY delivery_dis ASC";
+    const QUERY_SELECT_CATG_FROM_CLIID      = 'SELECT category_id, category FROM client_shop_category WHERE client_id = :client';
+    const QUERY_SELECT_ALLMENU_FROM_CLID    = 'SELECT category_id, item_topic_id, item_topic, item_desc_yn, item_desc, price FROM client_shop_menu WHERE client_id = :client';
+    const QUERY_CHECK_SHOP_DELIPRICE        = 'SELECT active, delivery_fee, watznear_charge, min_order FROM client_shop_search WHERE client_id = :client';
+    const QUERY_SELECT_ALL_MENU_WITHCLID    = 'SELECT item_topic_id, price FROM client_shop_menu WHERE client_id = :client';
+    const QUERY_INSERT_ORDER_BOOK           = "INSERT INTO order_book (order_time, last_update, client_id, email, order_placed, delivery, payment_mode, data) VALUES (NOW(), NOW(), :client, 
         :email, '1', :delivery, :payment_mode, :data)";
+    const QUERY_INSERT_ERROR_ORDER_BOOK     = "INSERT INTO error_order_book (type, order_time, last_update, client_id, email, order_placed, delivery, payment_mode, data) VALUES (:type, NOW(), NOW(), :client, 
+    :email, '1', :delivery, :payment_mode, :data)";
+
+    //Client
+    const QUERY_CLI_SEL_FCM_FROM_SHOPID     = 'SELECT fcm FROM clients_login WHERE client_id=:client';
 }
 
 ?>

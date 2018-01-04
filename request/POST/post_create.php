@@ -30,8 +30,7 @@
                                     $output->success(Constants::SUCCESS_LOGGED_IN, 
                                     array(
                                         Constants::JSON_PROFILE_STATUS => 'N',
-                                        Constants::JSON_LOGIN_TOKEN_TAG => $token,
-                                        Constants::JSON_PUBLIC_KEY => $puk
+                                        Constants::JSON_LOGIN_TOKEN_TAG => $token
                                     ), Constants::HTTP_SUCCESS_CODE_OK);
                                     exit();
                                 }else{

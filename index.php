@@ -46,6 +46,10 @@ switch($_SERVER['REQUEST_METHOD']) {
 									include 'request/POST/post_auth.php';
 								break;
 
+								case 'authclient':
+									include 'request/POST/post_client_auth.php';
+								break;
+
 								case 'create':
 									include 'request/POST/post_create.php';
 								break;
