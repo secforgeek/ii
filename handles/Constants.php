@@ -129,7 +129,7 @@ class Constants{
     const ERROR_CODE_LEVEL_14           = '30014';
 
     //DB Query
-    const QUERY_AUTH_CHECK_USER_EXIST       = 'SELECT name, email, password, type, profile_status, fcm FROM users_login WHERE email=:email';
+    const QUERY_AUTH_CHECK_USER_EXIST       = 'SELECT name, email, password, profile_status, fcm FROM users_login WHERE email=:email';
     const QUERY_IF_EMAIL_AND_MOB_EXISTS     = 'SELECT email FROM users_login WHERE email = :email OR mobile = :mobile';
     const QUERY_SELECT_EMAIL_USRSPROFILE    = 'SELECT * FROM users_login WHERE email = :email';
     const QUERY_AUTH_USER_TOKEN_UPDATE      = 'UPDATE users_login SET token=:token, updated_at=NOW() WHERE email=:user';
