@@ -70,6 +70,10 @@ switch($_SERVER['REQUEST_METHOD']) {
 									include 'request/POST/post_verifycart.php';	
 								break;
 
+								case 'getorders':
+									include 'request/POST/post_cli_getorder.php';
+								break;
+
 								default:
 									$output->defaultError(Constants::HTTP_ERROR_BADREQUEST);
 									exit();

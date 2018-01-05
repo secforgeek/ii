@@ -97,6 +97,7 @@ class Constants{
     const JSON_ACTION_JOB_DONE          = 'success';
 
     //API allowed input
+    const API_CLI_GET_MENU_INPUT        = 1;
     const API_AUTH_ALLOWED_INPUT        = 3;
     const API_CREATE_USER_ALLOWED_INPUT = 4;
     const API_UPDATE_PROFILE_INPUT      = 10;
@@ -153,7 +154,10 @@ class Constants{
     //Client
     const QUERY_CLI_SEL_FCM_FROM_SHOPID         = 'SELECT fcm FROM clients_login WHERE client_id=:client';
     const QUERY_CLI_AUTH_CHECK_USER_EXIST       = 'SELECT name, email, password, profile_status, fcm FROM clients_login WHERE email=:email';
-    const QUERY_CLI_AUTH_USER_FCM_TOKEN_UPDATE  = 'UPDATE clients_login SET token=:token, fcm=:fcm WHERE email=:user';
+    const QUERY_CLI_AUTH_USER_FCM_TOKEN_UPDATE  = 'UPDATE clients_login SET token=:token, fcm=:fcm WHERE email=:user'; 
+    const QUERY_CLI_SELECT_TOKEN_FROM_EMAIL     = 'SELECT token, client_id FROM clients_login WHERE email = :email';
+    const QUERY_CLI_SELECT_ORDER_TO_ACCEPT      = "SELECT id, order_time, payment_mode, data FROM order_book WHERE order_accepted = '0' AND client_id = :shopid";
+
 
 }
 

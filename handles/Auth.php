@@ -54,6 +54,7 @@ class Auth{
             Constants::JWT_DATA_EMAIL => $email
         );
     }
+
 }
 
 
