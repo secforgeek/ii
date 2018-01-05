@@ -3,6 +3,7 @@
 
 # Handles #
 handles/AuthKeys.php
+handles/FCMkeys.php
 
 # Temp Files - Needs to get deleted when publishing #
 test.php

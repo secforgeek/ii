@@ -27,7 +27,7 @@
                                     include 'handles/AuthKeys.php';
                                     $data = $auth->generateData($val['name'], Constants::AUTH_TOKEN_ACCESS_CLIENT,  $val['email']);
                                     $tk = $auth->generateToken($prk, $data, Constants::JWT_EXPIRE_IN_14_DAYS);
-                                    if($db->InsertUpdateQuery(Constants::QUERY_AUTH_USER_FCM_TOKEN_UPDATE, array(':token' => $tk, ':user' => $rec_username, ':fcm' => $postBody->fcm), 1)){
+                                    if($db->InsertUpdateQuery(Constants::QUERY_CLI_AUTH_USER_FCM_TOKEN_UPDATE, array(':token' => $tk, ':user' => $rec_username, ':fcm' => $postBody->fcm), 1)){
                                         $output->success(Constants::SUCCESS_LOGGED_IN, 
                                         array(
                                             Constants::JSON_PROFILE_STATUS => $val['profile_status'],
