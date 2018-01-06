@@ -1,5 +1,5 @@
 <?php
-include '../../handles/FCMkeys.php';
+include 'handles/FCMkeys.php';
 class fcm{
     
     public function getUsersHeaders(){

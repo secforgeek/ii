@@ -34,7 +34,8 @@
                                                             "cuisine" => $key['cuisine'],
                                                             "delivery_fee" => $key['delivery_fee'],
                                                             "distance" => $km,
-                                                            "minimum_order" => $key['min_order']
+                                                            "minimum_order" => $key['min_order'],
+                                                            "watznear_charge" => $key['watznear_charge']
                                                         );
                                                         $count++;
                                                         $return_array[] = $jreturn;

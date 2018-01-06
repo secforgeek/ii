@@ -76,6 +76,7 @@ class Constants{
     const ERROR_INVALID_CITY            = 'Please enter valid city';
     const ERROR_INVALID_COUNTRY         = 'You are not allowed to access from this country';
     const ERROR_INVALID_POSTCODE        = 'Please enter a valid postcode';
+    const ERROR_VERIFY_PROFILE          = 'Please verify your mobile & email';
 
     //Success
     const SUCCESS_LOGGED_IN             = 'Successfully Logged In';
@@ -141,13 +142,13 @@ class Constants{
         :email, :firstname, :lastname, :mobile, :address_one, :address_two, :city, :country, :postcode, NOW())';
     const QUERY_SELECT_TOKEN_FROM_EMAIL     = 'SELECT token FROM users_login WHERE email = :email';
     const QUERY_SEL_TOKEN_ACT_FCM_FROM_EML  = 'SELECT token, profile_status, fcm FROM users_login WHERE email = :email';
-    const QUERY_SELECT_ALLCLI_LATLNG        = "SELECT client_id, name, profile_img, cuisine, delivery_fee, delivery_dis, min_order, lat, lng FROM client_shop_search WHERE active = 'Y' AND sub_category = :scategory ORDER BY delivery_dis ASC";
+    const QUERY_SELECT_ALLCLI_LATLNG        = "SELECT client_id, name, profile_img, cuisine, delivery_fee, delivery_dis, min_order, lat, lng, watznear_charge FROM client_shop_search WHERE active = 'Y' AND sub_category = :scategory ORDER BY delivery_dis ASC";
     const QUERY_SELECT_CATG_FROM_CLIID      = 'SELECT category_id, category FROM client_shop_category WHERE client_id = :client';
     const QUERY_SELECT_ALLMENU_FROM_CLID    = 'SELECT category_id, item_topic_id, item_topic, item_desc_yn, item_desc, price FROM client_shop_menu WHERE client_id = :client';
     const QUERY_CHECK_SHOP_DELIPRICE        = 'SELECT active, delivery_fee, watznear_charge, min_order FROM client_shop_search WHERE client_id = :client';
     const QUERY_SELECT_ALL_MENU_WITHCLID    = 'SELECT item_topic_id, price FROM client_shop_menu WHERE client_id = :client';
-    const QUERY_INSERT_ORDER_BOOK           = "INSERT INTO order_book (order_time, last_update, client_id, email, order_placed, delivery, payment_mode, data) VALUES (NOW(), NOW(), :client, 
-        :email, '1', :delivery, :payment_mode, :data)";
+    const QUERY_INSERT_ORDER_BOOK           = "INSERT INTO order_book (order_time, last_update, client_id, email, order_placed, delivery, payment_mode, s_total, del_charge, ser_charge, total, data) VALUES (NOW(), NOW(), :client, 
+        :email, '1', :delivery, :payment_mode, :stotal, :dcharge, :scharge, :total, :data)";
     const QUERY_INSERT_ERROR_ORDER_BOOK     = "INSERT INTO error_order_book (type, order_time, last_update, client_id, email, order_placed, delivery, payment_mode, data) VALUES (:type, NOW(), NOW(), :client, 
     :email, '1', :delivery, :payment_mode, :data)";
 
