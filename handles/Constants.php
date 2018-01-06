@@ -157,7 +157,7 @@ class Constants{
     const QUERY_CLI_AUTH_CHECK_USER_EXIST       = 'SELECT name, email, password, profile_status, fcm FROM clients_login WHERE email=:email';
     const QUERY_CLI_AUTH_USER_FCM_TOKEN_UPDATE  = 'UPDATE clients_login SET token=:token, fcm=:fcm WHERE email=:user'; 
     const QUERY_CLI_SELECT_TOKEN_FROM_EMAIL     = 'SELECT token, client_id FROM clients_login WHERE email = :email';
-    const QUERY_CLI_SELECT_ORDER_TO_ACCEPT      = "SELECT id, order_time, payment_mode, data FROM order_book WHERE order_accepted = '0' AND client_id = :shopid";
+    const QUERY_CLI_SELECT_ORDER_TO_ACCEPT      = "SELECT id, order_time, payment_mode, s_total, del_charge, ser_charge, total, data FROM order_book WHERE order_accepted = '0' AND client_id = :shopid";
 
 
 }

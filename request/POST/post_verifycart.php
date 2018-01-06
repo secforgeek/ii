@@ -66,7 +66,13 @@ if(count((array)$postBody) === Constants::API_VERIFYCART_INPUT){
 																//SUCCESS
 																$output->custom("done", "Order placed");
 															}else{
-																$fcm_failed = $db->InsertUpdateQuery(Constants::QUERY_INSERT_ERROR_ORDER_BOOK, array(":client" => $data->shopid, ":email" => $res[Constants::JWT_DATA_DATA]->email,":delivery" => $data->del_method, ":payment_mode" => "CCC", ":data" => $bsv, ":type" => "N"), 1);
+																$fcm_failed = $db->InsertUpdateQuery(Constants::QUERY_INSERT_ERROR_ORDER_BOOK, 
+																array(":client" => $data->shopid, 
+																":email" => $res[Constants::JWT_DATA_DATA]->email,
+																":delivery" => $data->del_method, 
+																":payment_mode" => "CCC", 
+																":data" => $bsv, 
+																":type" => "N"), 1);
 																if($fcm_failed){
 																	//ERROR_SUCCESS
 																	$output->custom("part_done","Order placed, wait for the confirmation");
@@ -77,7 +83,13 @@ if(count((array)$postBody) === Constants::API_VERIFYCART_INPUT){
 																}
 															}
 														}else{
-															$fcm_failed = $db->InsertUpdateQuery(Constants::QUERY_INSERT_ERROR_ORDER_BOOK, array(":client" => $data->shopid, ":email" => $res[Constants::JWT_DATA_DATA]->email,":delivery" => $data->del_method, ":payment_mode" => "CCC", ":data" => $bsv, ":type" => "E"), 1);
+															$fcm_failed = $db->InsertUpdateQuery(Constants::QUERY_INSERT_ERROR_ORDER_BOOK, 
+															array(":client" => $data->shopid, 
+															":email" => $res[Constants::JWT_DATA_DATA]->email,
+															":delivery" => $data->del_method, 
+															":payment_mode" => "CCC", 
+															":data" => $bsv, 
+															":type" => "E"), 1);
 															if($fcm_failed){
 																//ERROR_SUCCESS
 																$output->custom("part_done","Insert Success");
