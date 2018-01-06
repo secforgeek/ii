@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2018 at 11:28 PM
+-- Generation Time: Jan 06, 2018 at 01:31 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -21,6 +21,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `restro`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clients_login`
+--
+
+CREATE TABLE `clients_login` (
+  `id` int(11) NOT NULL,
+  `client_id` varchar(32) NOT NULL,
+  `profile_status` char(1) NOT NULL DEFAULT 'N',
+  `joined` timestamp NULL DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `password` varchar(120) NOT NULL,
+  `last_changed` timestamp NULL DEFAULT NULL,
+  `token` varchar(500) DEFAULT NULL,
+  `fcm` varchar(500) NOT NULL,
+  `mobile` int(10) DEFAULT NULL,
+  `verified_mob` char(1) NOT NULL DEFAULT 'N',
+  `verified_email` char(1) NOT NULL DEFAULT 'N',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `clients_login`
+--
+
+INSERT INTO `clients_login` (`id`, `client_id`, `profile_status`, `joined`, `name`, `email`, `password`, `last_changed`, `token`, `fcm`, `mobile`, `verified_mob`, `verified_email`, `updated_at`) VALUES
+(1, '5d41402abc4b2a76b9719d911017c592', 'Y', '2018-01-24 00:00:00', 'AKSHAYMESS', 'akshay@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTUxMDk4NzIsImV4cCI6MzAzMTQyOTM0NCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IkFLU0hBWU1FU1MiLCJ0eXBlIjoiQyIsImVtYWlsIjoiYWtzaGF5QGdtYWlsLmNvbSJ9fQ.N0I3VgUrXPKIaRvv6Yb1L917u-4K4IWo48K0gcmznjaZWX5H-i7S_vWPkN3-_xYrTiku05fQXGQoMT--MRCKdRD1OBJzH88AxZmscEVUSJROkQFDK-ZMWLKB-dfPgZD1PR_GCKRGJ_ITOuS3cv6-TM9vOArVukALIe2_N5T60to', 'fbjg7U4P9hc:APA91bG1mApZfLidD5chTLYw7sLGsyeqFoS7y-2wDPwfRmZBbT2YbtWD2I2MPCP9jCVy4feHAsF3wGYqcOOUZ5TeoDNhVQNLiooLv4TWA1qycmrGAzUMOVFIsAwLPlL20vUDy-vO1aNo', NULL, 'N', 'N', '2018-01-04 23:51:12'),
+(2, '202cb962ac59075b964b07152d234b70', 'N', '2018-01-17 00:00:00', 'NAME2', 'usernameh@gmail.com', '', NULL, NULL, '', NULL, 'N', 'N', '2018-01-04 17:16:55'),
+(3, '5d41402abc4b2a76b9719d688917c592', 'N', '2018-01-17 00:00:00', 'NAME2', 'corbridge@gmail.com', '', NULL, NULL, '', NULL, 'N', 'N', '2018-01-04 17:16:55');
 
 -- --------------------------------------------------------
 
@@ -186,6 +218,26 @@ CREATE TABLE `error_handles` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `error_order_book`
+--
+
+CREATE TABLE `error_order_book` (
+  `id` int(11) NOT NULL,
+  `type` char(1) NOT NULL,
+  `order_time` datetime NOT NULL,
+  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `client_id` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `order_placed` int(1) NOT NULL DEFAULT '0',
+  `order_accepted` int(1) NOT NULL DEFAULT '0',
+  `delivery` char(1) NOT NULL,
+  `payment_mode` varchar(3) NOT NULL,
+  `data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_book`
 --
 
@@ -207,7 +259,7 @@ CREATE TABLE `order_book` (
 --
 
 INSERT INTO `order_book` (`id`, `order_time`, `last_update`, `client_id`, `email`, `order_placed`, `order_accepted`, `delivery`, `payment_mode`, `data`) VALUES
-(1, '2018-01-02 21:30:29', '2018-01-02 21:30:29', '5d41402abc4b2a76b9719d688917c592', 'username@gmail.com', 1, 0, 'C', 'CCC', '[[{\"name\":\"Pepsi\",\"quantity\":1,\"price\":2.99},{\"name\":\"7-Up\",\"quantity\":1,\"price\":4.98}],{\"subtotal\":4.98,\"charges\":12,\"total\":16.98}]'),
+(1, '2018-01-02 21:30:29', '2018-01-02 21:30:29', '5d41402abc4b2a76b9719d911017c592', 'username@gmail.com', 1, 0, 'C', 'CCC', '[[{\"name\":\"Pepsi\",\"quantity\":1,\"price\":2.99},{\"name\":\"7-Up\",\"quantity\":1,\"price\":4.98}],{\"subtotal\":4.98,\"charges\":12,\"total\":16.98}]'),
 (2, '2018-01-02 22:23:43', '2018-01-02 22:23:43', '5d41402abc4b2a76b9719d688917c592', 'username@gmail.com', 1, 0, 'D', 'CCC', '[[{\"name\":\"Pepsi\",\"quantity\":1,\"price\":\"2.99\"},{\"name\":\"7-Up\",\"quantity\":1,\"price\":\"1.99\"}],{\"subtotal\":\"4.98\",\"charges\":\"12.00\",\"total\":\"16.98\"}]'),
 (3, '2018-01-02 22:24:28', '2018-01-02 22:24:28', '5d41402abc4b2a76b9719d688917c592', 'username@gmail.com', 1, 0, 'D', 'CCC', '[[{\"name\":\"Pepsi\",\"quantity\":2,\"price\":\"5.98\"},{\"name\":\"7-Up\",\"quantity\":1,\"price\":\"1.99\"},{\"name\":\"Chicken Pizza\",\"quantity\":2,\"price\":\"21.98\"},{\"name\":\"Lamp Pizza\",\"quantity\":3,\"price\":\"38.97\"}],{\"subtotal\":\"68.92\",\"charges\":\"12.00\",\"total\":\"80.92\"}]');
 
@@ -221,12 +273,12 @@ CREATE TABLE `users_login` (
   `id` int(11) NOT NULL,
   `profile_status` char(1) NOT NULL DEFAULT 'N',
   `joined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `type` char(1) NOT NULL DEFAULT 'U',
   `name` varchar(50) NOT NULL,
   `email` varchar(64) NOT NULL,
   `password` varchar(120) NOT NULL,
   `last_changed` timestamp NULL DEFAULT NULL,
   `token` varchar(500) DEFAULT NULL,
+  `fcm` varchar(500) NOT NULL,
   `mobile` int(10) DEFAULT NULL,
   `verified_mob` char(1) NOT NULL DEFAULT 'N',
   `verified_email` char(1) NOT NULL DEFAULT 'N',
@@ -237,12 +289,12 @@ CREATE TABLE `users_login` (
 -- Dumping data for table `users_login`
 --
 
-INSERT INTO `users_login` (`id`, `profile_status`, `joined`, `type`, `name`, `email`, `password`, `last_changed`, `token`, `mobile`, `verified_mob`, `verified_email`, `updated_at`) VALUES
-(1, 'N', '2017-12-05 20:46:22', 'U', 'Test', 'username@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ5Mjk5MDUsImV4cCI6MzAzMTA2OTQxMCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.VfgAm4rwbLmQ-OajEQ3JAgwinTWemHSkQGqaDtniHTdcvn_1E0uoBjf_Ux-N8DxC9j-3q2sQUql1MHLa41mXawfpty21O1cL9mIDj817a5a7algjY3Pj8iNEFH1je6te3S8GPVrULxvb_4ZwRrOOYo4tEU-vy49Rhz_6OtyBjGI', 1234567890, '', '', '2018-01-02 21:51:45'),
-(2, 'N', '2017-12-05 21:50:43', 'U', 'Test2', 'usernameh@gmail.com', '$2y$10$OflNGOLMHxOFn5V5gUSsgeGAIAvhUwE1m1eVqNlsHVaIILWhxfBEi', '2017-12-05 21:50:43', 'eyJ0eXAiOiJKV1QiLCJhbGcdsadahhsddsadaaiOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbWVoQGdtYWlsLmNvbSIsInR5cGUiOiJVIn0.WXhF41PvgUUAo2k_217gRsLrw2AzQJLzPg-HX7FmO_G756-TJhmr5MBgHOMS-71MaLNmXoK-6mv1_SF3H1M8eCOPVACLih20bnfeJohQJhU1kJeOmBcErxZkVaulkA2Yvfj2DtIgXIxC', 1234567895, '', '', '2017-12-10 20:43:02'),
-(3, 'N', '2017-12-05 23:42:22', 'U', 'asdsadghf', 'usernam@gmail.com', '$2y$10$bPJGMIxgzhhtxFDxtOsY9.K72GoAfB1LaxPoZbUdYH6ZM2gU.cURG', '2017-12-05 23:42:22', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbUBnbWFpbC5jb20iLCJ0eXBlIjoiVSJ9.aOjaQo5fzhBFGexqmNzudyIePa1Nd7nqSADNc0JxnISfQfUzkGkjgjeVSP-tIOEkli1EtPasDncimtaSseGDxW4vYfcEcDKYsNzmgbNiVBfcynvV0lifWXccYDErt9T2XQMMU_sNi1CPprh5hzWhtp6qBzRCg3', 1234567894, '', '', '2017-12-05 23:42:22'),
-(4, 'N', '2017-12-05 23:44:07', 'U', 'Akshay', 'akshay@gmail.com', '$2y$10$dO3IN05IIink0miMmIAf2u5pintq.OPcad/WtOucYmTRl5ITPhwY2', '2017-12-05 23:44:07', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoiYWtzaGF5QGdtYWlsLmNvbSIsInR5cGUiOiJVIn0.t99FBl5sfGOm3HvAhpm2vNXgiBxYJ9Ts58GTf8pRoaqy9nZjAa9nYxUTs0B1L2Fl6ykHvGEGkdbOtfrsEuZaTGkTe3MvQzu4gGbW1VWSKhTybtXXPnuGK6fjSVQuKsDfw7WayNifEiccdhr-zmCtd_0lRyhLmjF', 1234567891, '', '', '2017-12-05 23:44:07'),
-(5, 'N', '2017-12-05 20:46:22', 'C', 'Corbridge', 'corbridge@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, '', 1234567809, '', '', '2017-12-10 21:15:13');
+INSERT INTO `users_login` (`id`, `profile_status`, `joined`, `name`, `email`, `password`, `last_changed`, `token`, `fcm`, `mobile`, `verified_mob`, `verified_email`, `updated_at`) VALUES
+(1, 'N', '2017-12-05 20:46:22', 'Test', 'username@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTUxMDAyNzcsImV4cCI6MzAzMTQxMDE1NCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.DFyY4jZKo3VpO2XwkQrlvGMeSEPy6-oMtlrBr3dMpipRJ2Xsqs5c-XJV4Ski_3CCW_ssUedRoFi4IxgvJpHAIrrqkAbf_EXEYuqdakQcxSTjgA4TDYA-7Xl7x7DxWGFIF4BH_S6uhq5HoIIi3oWQmLiQWxOpMiARSERJLypc4T0', 'cHayUR94U84:APA91bFBeNsqD0aqVNFGHigtMBh1v9-s_VOvtGOznFdQ0UC6rRCbvq05Jb12_ltgdh4GpJZIKZHzXdl-NyY5y_CfDi9gdwZqXIC5V1rtEqM48JAIDM82jUf89laZhkbNIo6k8FPdR8FI', 1234567890, '', '', '2018-01-04 21:11:17'),
+(2, 'N', '2017-12-05 21:50:43', 'Test2', 'usernameh@gmail.com', '$2y$10$OflNGOLMHxOFn5V5gUSsgeGAIAvhUwE1m1eVqNlsHVaIILWhxfBEi', '2017-12-05 21:50:43', 'eyJ0eXAiOiJKV1QiLCJhbGcdsadahhsddsadaaiOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbWVoQGdtYWlsLmNvbSIsInR5cGUiOiJVIn0.WXhF41PvgUUAo2k_217gRsLrw2AzQJLzPg-HX7FmO_G756-TJhmr5MBgHOMS-71MaLNmXoK-6mv1_SF3H1M8eCOPVACLih20bnfeJohQJhU1kJeOmBcErxZkVaulkA2Yvfj2DtIgXIxC', '', 1234567895, '', '', '2017-12-10 20:43:02'),
+(3, 'N', '2017-12-05 23:42:22', 'asdsadghf', 'usernam@gmail.com', '$2y$10$bPJGMIxgzhhtxFDxtOsY9.K72GoAfB1LaxPoZbUdYH6ZM2gU.cURG', '2017-12-05 23:42:22', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJnc2Ryb2lkLmNvbSIsImF1ZCI6ImdzZHJvaWQuY29tIiwidXNyIjoidXNlcm5hbUBnbWFpbC5jb20iLCJ0eXBlIjoiVSJ9.aOjaQo5fzhBFGexqmNzudyIePa1Nd7nqSADNc0JxnISfQfUzkGkjgjeVSP-tIOEkli1EtPasDncimtaSseGDxW4vYfcEcDKYsNzmgbNiVBfcynvV0lifWXccYDErt9T2XQMMU_sNi1CPprh5hzWhtp6qBzRCg3', '', 1234567894, '', '', '2017-12-05 23:42:22'),
+(4, 'N', '2017-12-05 23:44:07', 'Akshay', 'akshay@gmail.com', '$2y$10$dO3IN05IIink0miMmIAf2u5pintq.OPcad/WtOucYmTRl5ITPhwY2', '2017-12-05 23:44:07', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTUxMDkxNzUsImV4cCI6MzAzMTQyNzk1MCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IkFLU0hBWU1FU1MiLCJ0eXBlIjoiQyIsImVtYWlsIjoiYWtzaGF5QGdtYWlsLmNvbSJ9fQ.fdHKcyY8U65HIPCPSr9zSTfF2nxKbMRg9Qd51EZ92tHLXoIERO0hp7nF3nFsBK8zP7RQzZEiwA4mRa6lR41z-o-OGitRzcajz2U5A6MMFBQZMZk3Aby8wViLVnzqubse72Lek24ieOCWpK2d4xeGGPvqK-1SNazS5XVvpmeqp84', 'dlau01WZVhA:APA91bFNyiaLo8XFv2M3UuzeN1cK6wf5w6WdFINz5BT99_iNIYar8za6nbzx_pbEjOv2STK2yDmqhdr1WbzciY1DkYGSLvBKUNcjEk5gUfnZDGzvLHQTQ1sCN-Kr_WdiyXxA_rzji2Ud', 1234567891, '', '', '2018-01-04 23:39:35'),
+(5, 'N', '2017-12-05 20:46:22', 'Corbridge', 'corbridge@gmail.com', '$2y$10$L3LTdPQAlaEtCh2V8EcwnO/uv2rZ1AMmZ3iaR4svPzuUL5vC2TRSC', NULL, '', '', 1234567809, '', '', '2017-12-10 21:15:13');
 
 -- --------------------------------------------------------
 
@@ -274,6 +326,14 @@ INSERT INTO `user_profile` (`id`, `email`, `firstname`, `lastname`, `mobile`, `a
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `clients_login`
+--
+ALTER TABLE `clients_login`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `client_id` (`client_id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `client_shop_category`
@@ -325,6 +385,13 @@ ALTER TABLE `error_handles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `error_order_book`
+--
+ALTER TABLE `error_order_book`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `client_id` (`client_id`);
+
+--
 -- Indexes for table `order_book`
 --
 ALTER TABLE `order_book`
@@ -350,6 +417,12 @@ ALTER TABLE `user_profile`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `clients_login`
+--
+ALTER TABLE `clients_login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `client_shop_category`
@@ -419,7 +492,7 @@ ALTER TABLE `client_shop_category`
 -- Constraints for table `client_shop_details`
 --
 ALTER TABLE `client_shop_details`
-  ADD CONSTRAINT `client_shop_details_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client_shop_owners` (`client_id`);
+  ADD CONSTRAINT `client_shop_details_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client_shop_owners` (`client_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `client_shop_menu`
@@ -432,8 +505,8 @@ ALTER TABLE `client_shop_menu`
 -- Constraints for table `client_shop_owners`
 --
 ALTER TABLE `client_shop_owners`
-  ADD CONSTRAINT `client_shop_owners_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users_login` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `client_shop_owners_ibfk_2` FOREIGN KEY (`mobile`) REFERENCES `users_login` (`mobile`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `client_shop_owners_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients_login` (`client_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `client_shop_owners_ibfk_2` FOREIGN KEY (`email`) REFERENCES `clients_login` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `client_shop_search`
