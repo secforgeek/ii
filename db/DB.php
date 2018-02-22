@@ -48,7 +48,7 @@ class DB{
        try{
             $statement = $this->pdo->prepare($query);
             $statement->execute($params);
-            if($statement->rowCount() == $resultCount){
+            if($statement->rowCount() === $resultCount){
                 return true;
                 $this->reset();
             }else{
