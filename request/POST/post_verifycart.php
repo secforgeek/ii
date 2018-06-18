@@ -37,7 +37,7 @@ if(count((array)$postBody) === Constants::API_VERIFYCART_INPUT){
 										if((count($data->item) === $counter)){
 											$Total = number_format($subtotal + $ordercharge, 2); 
 											if($Total === $data->price->total){ //VALISTART
-												$output->success("Success",null);
+												$output->custom("done", "verified cart");
 
 											}else{
 												$output->error(Constants::ERROR_DEF_INVALID_REQUEST, Constants::ERROR_CODE_LEVEL_11); //unable to match total price
